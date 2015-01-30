@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FixChatViewController">
+            <connections>
+                <outlet property="imgFake" destination="tS2-pm-9qC" id="5mN-B0-OlH"/>
+                <outlet property="imgNew" destination="gyp-Xu-2Ue" id="wg5-eS-cUL"/>
+                <outlet property="txvNew" destination="O5W-bm-wQh" id="Wkh-d8-ePp"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZX-Za-zfR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuU-m3-FnN">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="view_my_top" translatesAutoresizingMaskIntoConstraints="NO" id="6Cu-QN-a6V">
+                            <rect key="frame" x="0.0" y="-34" width="320" height="130"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="130" id="Pnl-9L-1Yz"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gyp-Xu-2Ue">
+                            <rect key="frame" x="63" y="36" width="195" height="135"/>
+                        </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5W-bm-wQh" customClass="RichTextEditor">
+                            <rect key="frame" x="29" y="25" width="263" height="170"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="tfD-aZ-u1t"/>
+                                <outlet property="delegate" destination="-1" id="2c2-iL-wPn"/>
+                            </connections>
+                        </textView>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tS2-pm-9qC">
+                            <rect key="frame" x="29" y="25" width="263" height="170"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="25" id="5SJ-Hv-gyp"/>
+                        <constraint firstItem="6Cu-QN-a6V" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="-34" id="5hk-7l-SSG"/>
+                        <constraint firstItem="6Cu-QN-a6V" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" id="61Y-vI-Q6s"/>
+                        <constraint firstItem="O5W-bm-wQh" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" constant="29" id="8lW-jB-p5D"/>
+                        <constraint firstItem="gyp-Xu-2Ue" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="36" id="DVy-Yq-qpk"/>
+                        <constraint firstAttribute="trailing" secondItem="VuU-m3-FnN" secondAttribute="trailing" id="GRd-5a-TMV"/>
+                        <constraint firstItem="gyp-Xu-2Ue" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" constant="63" id="Pi4-8v-0mH"/>
+                        <constraint firstAttribute="centerX" secondItem="VuU-m3-FnN" secondAttribute="centerX" id="RWX-86-ami"/>
+                        <constraint firstAttribute="trailing" secondItem="O5W-bm-wQh" secondAttribute="trailing" constant="28" id="S49-Ku-6Iz"/>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" constant="29" id="Smx-TV-auA"/>
+                        <constraint firstAttribute="bottom" secondItem="O5W-bm-wQh" secondAttribute="bottom" constant="309" id="Tnn-pw-eRc"/>
+                        <constraint firstAttribute="bottom" secondItem="gyp-Xu-2Ue" secondAttribute="bottom" constant="333" id="cgT-Qn-V1G"/>
+                        <constraint firstItem="O5W-bm-wQh" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="25" id="dEI-Jc-mAN"/>
+                        <constraint firstAttribute="centerY" secondItem="VuU-m3-FnN" secondAttribute="centerY" id="ez7-bj-rcB"/>
+                        <constraint firstItem="VuU-m3-FnN" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" id="gOs-TU-lwZ"/>
+                        <constraint firstItem="VuU-m3-FnN" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" id="jA5-P4-Wyi"/>
+                        <constraint firstAttribute="trailing" secondItem="gyp-Xu-2Ue" secondAttribute="trailing" constant="62" id="jtY-MM-7nF"/>
+                        <constraint firstAttribute="bottom" secondItem="VuU-m3-FnN" secondAttribute="bottom" id="lox-Q7-Rdl"/>
+                        <constraint firstAttribute="trailing" secondItem="6Cu-QN-a6V" secondAttribute="trailing" id="mPA-e4-ZbN"/>
+                        <constraint firstAttribute="trailing" secondItem="tS2-pm-9qC" secondAttribute="trailing" constant="28" id="ufL-yY-hke"/>
+                        <constraint firstAttribute="bottom" secondItem="tS2-pm-9qC" secondAttribute="bottom" constant="309" id="zOi-ZT-ZtW"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lZX-Za-zfR" secondAttribute="bottom" id="BwH-vk-W7h"/>
+                <constraint firstAttribute="trailing" secondItem="lZX-Za-zfR" secondAttribute="trailing" id="afH-lp-17R"/>
+                <constraint firstItem="lZX-Za-zfR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jWj-AA-hUg"/>
+                <constraint firstItem="lZX-Za-zfR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qYB-YB-Eow"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="198" y="262"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="view_my_top" width="320" height="174"/>
+    </resources>
+</document>

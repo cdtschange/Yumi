@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>90DCA8D9-141C-404D-B707-6B421017948A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Yumi</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>049F959FA229C8E5C1EBBB3FF419DC32022FCD90</key>
+		<string>https://github.com/cdtschange/ObjcKit.git</string>
+		<key>69654983562A6A4D99A83553E4C3CC812FC10A29</key>
+		<string>https://github.com/cdtschange/Yumi.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Code/Client/iOS/Yumi.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>049F959FA229C8E5C1EBBB3FF419DC32022FCD90</key>
+		<string>../../../../../../ObjcKit</string>
+		<key>69654983562A6A4D99A83553E4C3CC812FC10A29</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cdtschange/Yumi.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>69654983562A6A4D99A83553E4C3CC812FC10A29</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>049F959FA229C8E5C1EBBB3FF419DC32022FCD90</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ObjcKit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>69654983562A6A4D99A83553E4C3CC812FC10A29</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Yumi</string>
+		</dict>
+	</array>
+</dict>
+</plist>

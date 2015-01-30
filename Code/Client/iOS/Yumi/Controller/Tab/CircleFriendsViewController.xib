@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleFriendsViewController">
+            <connections>
+                <outlet property="scrollView" destination="f3z-dq-551" id="nIW-kB-W6F"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-dq-551">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0a-TO-jge">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="view_circle_bg" translatesAutoresizingMaskIntoConstraints="NO" id="sqh-ma-1py">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="1336"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1336" id="vHW-Lb-Eb1"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="f0a-TO-jge" secondAttribute="bottom" id="4gh-vp-sbD"/>
+                        <constraint firstAttribute="trailing" secondItem="sqh-ma-1py" secondAttribute="trailing" id="Aiz-zv-iqd"/>
+                        <constraint firstItem="f0a-TO-jge" firstAttribute="top" secondItem="f3z-dq-551" secondAttribute="top" id="M4x-mD-K7h"/>
+                        <constraint firstItem="sqh-ma-1py" firstAttribute="leading" secondItem="f3z-dq-551" secondAttribute="leading" id="Osp-h3-PTa"/>
+                        <constraint firstAttribute="centerY" secondItem="f0a-TO-jge" secondAttribute="centerY" id="VGT-zj-AZt"/>
+                        <constraint firstItem="sqh-ma-1py" firstAttribute="top" secondItem="f3z-dq-551" secondAttribute="top" id="WbH-cP-LsS"/>
+                        <constraint firstAttribute="trailing" secondItem="f0a-TO-jge" secondAttribute="trailing" id="giz-Fs-KSM"/>
+                        <constraint firstAttribute="centerX" secondItem="f0a-TO-jge" secondAttribute="centerX" id="qpw-aw-jm5"/>
+                        <constraint firstItem="f0a-TO-jge" firstAttribute="leading" secondItem="f3z-dq-551" secondAttribute="leading" id="vxm-OP-eHu"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="f3z-dq-551" secondAttribute="trailing" id="7hS-ET-FD2"/>
+                <constraint firstAttribute="bottom" secondItem="f3z-dq-551" secondAttribute="bottom" id="ByN-7l-nT3"/>
+                <constraint firstItem="f3z-dq-551" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LQP-st-Jef"/>
+                <constraint firstItem="f3z-dq-551" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZXw-EM-6du"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="view_circle_bg" width="320" height="1336"/>
+    </resources>
+</document>

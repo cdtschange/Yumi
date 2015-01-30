@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterPreViewController">
+            <connections>
+                <outlet property="btnNextStep" destination="wa7-Xg-4Vi" id="Cbp-4M-sbw"/>
+                <outlet property="txtMobile" destination="9b6-2K-lbx" id="cYN-41-znk"/>
+                <outlet property="view" destination="iN0-l3-epB" id="hW3-qj-9m7"/>
+                <outlet property="viewMobile" destination="a0V-zU-j6l" id="cby-J0-Z6V"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0V-zU-j6l">
+                    <rect key="frame" x="30" y="22" width="261" height="47"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9b6-2K-lbx" customClass="MHTextField">
+                            <rect key="frame" x="13" y="9" width="235" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="9b6-2K-lbx" firstAttribute="top" secondItem="a0V-zU-j6l" secondAttribute="top" constant="9" id="Hgn-gH-MJu"/>
+                        <constraint firstAttribute="trailing" secondItem="9b6-2K-lbx" secondAttribute="trailing" constant="13" id="dHR-Pq-Zmf"/>
+                        <constraint firstItem="9b6-2K-lbx" firstAttribute="leading" secondItem="a0V-zU-j6l" secondAttribute="leading" constant="13" id="fqC-un-Huk"/>
+                        <constraint firstAttribute="height" constant="47" id="lqg-Hp-TZR"/>
+                        <constraint firstAttribute="bottom" secondItem="9b6-2K-lbx" secondAttribute="bottom" constant="8" id="wSm-HR-2Xl"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wa7-Xg-4Vi">
+                    <rect key="frame" x="60" y="88" width="200" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.75294117650000003" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="PMA-wk-dVe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="下一步">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click_NextStep:" destination="-1" eventType="touchUpInside" id="mC3-Ni-2uy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="a0V-zU-j6l" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="DCg-cw-ReY"/>
+                <constraint firstItem="a0V-zU-j6l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="HHB-Ag-ROm"/>
+                <constraint firstAttribute="trailing" secondItem="a0V-zU-j6l" secondAttribute="trailing" constant="29" id="Uf0-5A-WvE"/>
+                <constraint firstItem="wa7-Xg-4Vi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="c23-bK-fLJ"/>
+                <constraint firstAttribute="trailing" secondItem="wa7-Xg-4Vi" secondAttribute="trailing" constant="60" id="ee8-Nb-z9S"/>
+                <constraint firstItem="wa7-Xg-4Vi" firstAttribute="top" secondItem="a0V-zU-j6l" secondAttribute="bottom" constant="19" id="fHr-jc-TQn"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="201" y="198"/>
+        </view>
+    </objects>
+</document>

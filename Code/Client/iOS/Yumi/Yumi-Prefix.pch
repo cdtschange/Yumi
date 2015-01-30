@@ -1,0 +1,42 @@
+//
+//  Yumi-Prefix.pch
+//  Yumi
+//
+//  Created by Mao on 12/29/14.
+//  Copyright (c) 2014 Mao. All rights reserved.
+//
+
+#ifndef Yumi_Yumi_Prefix_pch
+#define Yumi_Yumi_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "GlobalConfig.h"
+#import "BaseViewController.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
+#import "DDASLLogger.h"
+#import "UIViewController+Yumi.h"
+#import "YumiNetworkProvider.h"
+#import "YumiNetworkInfo.h"
+#import "YumiData.h"
+#import "TMCache.h"
+#import "Category_Kit.h"
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_INFO;
+#endif
+#endif
+
+#ifndef __OPTIMIZE__
+# define NSLog(...) NSLog(__VA_ARGS__)
+#else
+# define NSLog(...) {}
+#endif
+
+#endif
