@@ -127,23 +127,28 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-lS-hRv">
-                        <rect key="frame" x="76" y="11" width="124" height="21"/>
+                        <rect key="frame" x="76" y="13" width="30" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="O9k-2z-Zpk"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="O9k-2z-Zpk"/>
+                            </mask>
+                        </variation>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_male" translatesAutoresizingMaskIntoConstraints="NO" id="uJ4-G8-twM">
-                        <rect key="frame" x="204" y="10" width="22" height="22"/>
+                        <rect key="frame" x="107" y="11" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="S7Q-yN-BkT"/>
                             <constraint firstAttribute="width" constant="22" id="rvO-h9-KIw"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清华大学" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLp-Gb-eRP">
-                        <rect key="frame" x="227" y="11" width="85" height="21"/>
+                        <rect key="frame" x="260" y="14" width="52" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="UyX-Sz-w9Z"/>
                             <constraint firstAttribute="width" constant="85" id="d9v-Wr-qQG"/>
@@ -151,6 +156,12 @@
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UyX-Sz-w9Z"/>
+                                <exclude reference="d9v-Wr-qQG"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目的" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNP-VI-Gcv">
                         <rect key="frame" x="76" y="33" width="236" height="21"/>
@@ -202,22 +213,23 @@
                     <constraint firstItem="FVF-Ec-zTc" firstAttribute="leading" secondItem="SYZ-cY-vQz" secondAttribute="trailing" constant="3" id="Kls-Hh-6YN"/>
                     <constraint firstItem="FVF-Ec-zTc" firstAttribute="top" secondItem="BNP-VI-Gcv" secondAttribute="bottom" id="NzT-Jw-Lgv"/>
                     <constraint firstItem="gfO-FD-ADN" firstAttribute="leading" secondItem="FVF-Ec-zTc" secondAttribute="trailing" constant="4" id="OU6-X7-ByC"/>
-                    <constraint firstItem="BNP-VI-Gcv" firstAttribute="top" secondItem="f1T-lS-hRv" secondAttribute="bottom" constant="1" id="Tfh-iD-Bm1"/>
-                    <constraint firstItem="uJ4-G8-twM" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="2" id="YfS-uk-5xi"/>
+                    <constraint firstItem="BNP-VI-Gcv" firstAttribute="top" secondItem="f1T-lS-hRv" secondAttribute="bottom" constant="2" id="Tfh-iD-Bm1"/>
+                    <constraint firstItem="uJ4-G8-twM" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="3" id="YfS-uk-5xi"/>
                     <constraint firstItem="PLp-Gb-eRP" firstAttribute="trailing" secondItem="nyl-ZQ-vSu" secondAttribute="trailingMargin" id="aW1-oH-HqU"/>
                     <constraint firstItem="BNP-VI-Gcv" firstAttribute="trailing" secondItem="nyl-ZQ-vSu" secondAttribute="trailingMargin" id="dE6-iA-X4J"/>
                     <constraint firstItem="BNP-VI-Gcv" firstAttribute="leading" secondItem="XGn-TV-D9G" secondAttribute="trailing" constant="16" id="gC3-kx-ydm"/>
-                    <constraint firstItem="uJ4-G8-twM" firstAttribute="leading" secondItem="f1T-lS-hRv" secondAttribute="trailing" constant="4" id="mbM-y5-Unk"/>
+                    <constraint firstItem="uJ4-G8-twM" firstAttribute="leading" secondItem="f1T-lS-hRv" secondAttribute="trailing" constant="1" id="mbM-y5-Unk"/>
                     <constraint firstAttribute="trailingMargin" secondItem="f1T-lS-hRv" secondAttribute="trailing" constant="112" id="nhW-cS-7XE"/>
                     <constraint firstItem="XGn-TV-D9G" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="10" id="rtz-L5-8HP"/>
                     <constraint firstItem="SYZ-cY-vQz" firstAttribute="leading" secondItem="XGn-TV-D9G" secondAttribute="trailing" constant="16" id="taR-od-T6u"/>
                     <constraint firstItem="SYZ-cY-vQz" firstAttribute="top" secondItem="BNP-VI-Gcv" secondAttribute="bottom" id="ur7-zw-usx"/>
-                    <constraint firstItem="PLp-Gb-eRP" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="3" id="xjs-bg-rLM"/>
-                    <constraint firstItem="f1T-lS-hRv" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="3" id="yWh-OY-Wa0"/>
+                    <constraint firstItem="PLp-Gb-eRP" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="6" id="xjs-bg-rLM"/>
+                    <constraint firstItem="f1T-lS-hRv" firstAttribute="top" secondItem="nyl-ZQ-vSu" secondAttribute="topMargin" constant="5" id="yWh-OY-Wa0"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="1qi-ie-gw6"/>
+                        <exclude reference="nhW-cS-7XE"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *viewMobile;
 @property (weak, nonatomic) IBOutlet UIView *viewPassword;
 
-
 @end
 
 @implementation LoginViewController
@@ -58,11 +57,12 @@
     [self.txtName resignFirstResponder];
     [self.txtPassword resignFirstResponder];
     __weak LoginViewController *weakself = self;
-    [[UserProvider shared] userLoginForUserName:self.txtName.text passwd:self.txtPassword.text statusBlock:self.statusBlock success:^(id responseObject) {
+    NSURLSessionTask *task = [[UserProvider shared] userLoginForUserName:self.txtName.text passwd:self.txtPassword.text success:^(id responseObject) {
         //TODO
         [weakself showInfoTip:TXT_Login_LoginSuccess];
         [weakself routeBack];
         } failure:self.failureBlock];
+    [self setNetworkStateOfTask:task];
 }
 - (IBAction)regist:(id)sender {
     [self routeToName:@"RegisterPreViewController" params:nil];

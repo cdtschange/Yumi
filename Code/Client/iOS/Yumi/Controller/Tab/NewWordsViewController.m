@@ -15,7 +15,6 @@ static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
 
 @interface NewWordsViewController ()<NewWordCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *translateProvider;
 
 @end
 
@@ -192,10 +191,8 @@ static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
     }else{
         if (content&&content.length>0) {
             __weak NewWordsViewController *weakself = self;
-            self.translateProvider = [YumiNetworkProvider new];
-            [self.translateProvider translateForText:content];
-            [self.translateProvider setCompletionBlockWithSuccess:^(id responseObject) {
-                TranslateData *data = responseObject;
+            NSURLSessionTask *task = [[TranslateAPIData initWithText:content] requestWithSuccess:^(id responseObject) {
+                TranslateAPIData *data = responseObject;
                 if (data.result&&data.result.length>0) {
                     int index = (int)[weakself.tableView indexPathForCell:cell].row;
                     weakself.dataArray[index] = @{@"words":content,@"translate":data.result};
@@ -203,11 +200,8 @@ static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
                 }else{
                     [weakself showInfoTip:@"翻译失败"];
                 }
-            } failure:^(NSError *error) {
-                weakself.failureBlock(error);
-            }];
-            self.translateProvider.statusBlock = self.statusBlock;
-            [self.translateProvider requestData];
+            } failure:self.failureBlock];
+            [self setNetworkStateOfTask:task];
         }
     }
 }

@@ -55,14 +55,12 @@ static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
     
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
-    [self.viewHeader removeFromSuperview];
-    [self.viewHeader setTranslatesAutoresizingMaskIntoConstraints:YES];
     self.tableView.tableHeaderView = self.viewHeader;
     [self loadData];
 }
 -(void)loadData{
     [super loadData];
-    [self.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:[AccountEntity shared].picsrc]]];
+    [self.imgHead setImageWithURL:[NSURL URLWithString:[[AccountEntity shared].picsrc imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
     self.imgHead.isRounded = YES;
     self.lblName.text = [AccountEntity shared].name;
     self.lblInfo.text = [NSString stringWithFormat:@"语密号：14897261"];
@@ -101,7 +99,6 @@ static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
     MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyTableViewCellIdentify];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:kMyTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
-        
     }
     NSDictionary *obj;
     if (indexPath.section==0) {
@@ -132,12 +129,6 @@ static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
     }else{
         [self showInfoTip:@"此功能暂未开放，敬请期待"];
     }
-//    if (indexPath.row == 0) {
-//        [self routeToName:@"NewFriendsViewController" params:nil];
-//        return;
-//    }
-//    User *user = self.dataArray[indexPath.row];
-//    [self routeToName:@"ChatViewController" params:@{@"tuid":user.uid}];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 16;
@@ -145,14 +136,6 @@ static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 16)];
     view.backgroundColor = RGBCOLOR(250,250,250);
-//    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
-//    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 15, self.view.width, 1)];
-//    line1.backgroundColor = RGBCOLOR(228,229,230);
-//    line2.backgroundColor = RGBCOLOR(228,229,230);
-//    [view addSubview:line1];
-//    if (section<3) {
-//        [view addSubview:line2];
-//    }
     return view;
 }
 

@@ -19,9 +19,6 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 @property (weak, nonatomic) IBOutlet UIButton *btnChat;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property (strong, nonatomic) YumiNetworkProvider *addProvider;
-@property (strong, nonatomic) YumiNetworkProvider *delProvider;
 @property (assign, nonatomic) BOOL isAdd;
 @property (copy, nonatomic) NSString *uname;
 @property (copy, nonatomic) NSString *upic;
@@ -59,13 +56,18 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
 }
 -(void)loadData{
     [super loadData];
+    [self.viewFooter removeFromSuperview];
+    self.viewFooter.top = 0;
+    if ([self.uid isEqualToString: [AccountEntity shared].uid]) {
+        UIView * view = [[UIView alloc] init];
+        self.tableView.tableFooterView = view;
+    }else{
+        self.tableView.tableFooterView = self.viewFooter;
+    }
     
     __weak UserProfileViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    self.provider.statusBlock = self.listStatusBlock;
-    
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        ProfileData *data = responseObject;
+    NSURLSessionTask *task = [[UserProfileAPIData initWithTuid:self.uid] requestWithSuccess:^(id responseObject) {
+        UserProfileAPIData *data = responseObject;
         weakself.uname = data.u_name;
         weakself.upic = data.pic;
         if (data.state==0) {
@@ -74,7 +76,8 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
             weakself.btnAdd.selected = YES;
             weakself.btnAdd.backgroundColor = RGBCOLOR(250, 101, 105);
         }else{
-            weakself.btnChat.hidden = YES;
+            [weakself.btnChat setTranslatesAutoresizingMaskIntoConstraints:YES];
+            weakself.btnChat.height = 0;
             weakself.isAdd = YES;
             weakself.btnAdd.selected = NO;
             weakself.btnAdd.backgroundColor = COLOR_Default_Green;
@@ -83,19 +86,8 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
                          @{@"title":@"语言",@"value":data.languages}];
         [weakself dataArrayChanged:arr];
         [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    
-    [self.viewFooter removeFromSuperview];
-    if ([self.uid isEqualToString: [AccountEntity shared].uid]) {
-        UIView * view = [[UIView alloc] init];
-        self.tableView.tableFooterView = view;
-    }else{
-        self.tableView.tableFooterView = self.viewFooter;
-    }
-    [self.provider profileForTuid:self.uid];
-    [self.provider requestData];
+    } failure:self.failureBlock];
+    [self setNetworkStateOfTask:task];
 }
 
 -(void)initNavigationBar{
@@ -109,32 +101,24 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
         __weak UserProfileViewController *weakself = self;
         vc.block = ^(BOOL added, NSString* reason){
             if (added) {
-                weakself.addProvider = [YumiNetworkProvider new];
-                [weakself.addProvider addUserForTuid:weakself.uid reason:reason];
-                [weakself.addProvider setCompletionBlockWithSuccess:^(id responseObject) {
-                } failure:^(NSError *error) {
-                    weakself.failureBlock(error);
-                }];
-                weakself.addProvider.statusBlock = weakself.statusBlock;
-                [weakself.addProvider requestData];
+                NSURLSessionTask *task = [[AddUserAPIData initWithTuid:weakself.uid reason:reason] requestWithSuccess:^(id responseObject) {
+                    [weakself showInfoTip:@"发送好友邀请成功"];
+                } failure:self.failureBlock];
+                [weakself setNetworkStateOfTask:task];
             }
         };
         UINavigationController *nav = [[[self.navigationController class] alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
     }else{
         __weak UserProfileViewController *weakself = self;
-        self.delProvider = [YumiNetworkProvider new];
-        [self.delProvider delUserForTuid:self.uid];
-        [self.delProvider setCompletionBlockWithSuccess:^(id responseObject) {
+        NSURLSessionTask *task = [[DelUserAPIData initWithTuid:weakself.uid] requestWithSuccess:^(id responseObject) {
             weakself.isAdd = YES;
             weakself.btnAdd.selected = NO;
             weakself.btnAdd.backgroundColor = COLOR_Default_Green;
-            weakself.btnChat.hidden = YES;
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        self.delProvider.statusBlock = self.statusBlock;
-        [self.delProvider requestData];
+            [weakself.btnChat setTranslatesAutoresizingMaskIntoConstraints:YES];
+            weakself.btnChat.height = 0;
+        } failure:self.failureBlock];
+        [weakself setNetworkStateOfTask:task];
     }
 }
 - (IBAction)click_chat:(id)sender {
@@ -166,7 +150,7 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
         cell.lblName.text = self.uname;
         cell.lblInfo.text = [NSString stringWithFormat:@"语密号：14897261"];
         cell.imgHead.isRounded = YES;
-        [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:self.upic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
+        [cell.imgHead setImageWithURL:[NSURL URLWithString:[self.upic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
         return cell;
     }else if (indexPath.section==1) {
         ProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kProfileTableViewCellIdentify];
@@ -221,14 +205,6 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 16)];
     view.backgroundColor = RGBCOLOR(250,250,250);
-//    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-//    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 15, 320, 1)];
-//    line1.backgroundColor = RGBCOLOR(228,229,230);
-//    line2.backgroundColor = RGBCOLOR(228,229,230);
-//    [view addSubview:line1];
-//    if (section<4) {
-//        [view addSubview:line2];
-//    }
     return view;
 }
 @end

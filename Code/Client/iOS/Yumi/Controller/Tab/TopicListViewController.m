@@ -13,8 +13,6 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
 
 @interface TopicListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property (strong, nonatomic) YumiNetworkProvider *mytopicprovider;
 @property (strong, nonatomic) NSArray *myTopicArray;
 
 @end
@@ -31,6 +29,25 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak TopicListViewController *weakself = self;
+    TopicsAPIData *data = [TopicsAPIData initWithStart:self.dataIndex num:self.listLoadNumber];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        TopicsAPIData *data = responseObject;
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:data.topics];
+        [weakself dataArrayChanged:arr];
+        NSURLSessionTask *task = [[MyTopicsAPIData init] requestWithSuccess:^(id responseObject) {
+            MyTopicsAPIData *data2 = responseObject;
+            NSMutableArray *arr2 = [NSMutableArray arrayWithArray:data2.topics];
+            weakself.myTopicArray = arr2;
+            [weakself dataArrayChanged:arr];
+            [weakself.tableView reloadData];
+        } failure:weakself.listFailureBlock];
+        [weakself setListNetworkStateOfTask:task];
+    } failure:weakself.listFailureBlock];
+    [self setListNetworkStateOfTask:task];
+}
 -(WaterViewType)listType{
     return WaterRefreshTypeOnlyRefresh;
 }
@@ -40,30 +57,6 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
 -(void)initUIAndData{
     [super initUIAndData];
     self.title = @"话题";
-    __weak TopicListViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        TopicsData *data = responseObject;
-        NSMutableArray *arr = [NSMutableArray arrayWithArray:data.topics];
-        [weakself dataArrayChanged:arr];
-//        [weakself.tableView reloadData];
-        weakself.mytopicprovider = [YumiNetworkProvider new];
-        weakself.mytopicprovider.statusBlock = weakself.listStatusBlock;
-        [weakself.mytopicprovider setCompletionBlockWithSuccess:^(id responseObject) {
-            MyTopicsData *data2 = responseObject;
-            NSMutableArray *arr2 = [NSMutableArray arrayWithArray:data2.topics];
-            weakself.myTopicArray = arr2;
-            [weakself dataArrayChanged:arr];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-             weakself.listFailureBlock(error);
-        }];
-        [weakself.mytopicprovider myTopics];
-        [weakself.mytopicprovider requestData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    self.provider.statusBlock = self.listStatusBlock;
     
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
@@ -72,15 +65,12 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
 -(void)loadData{
     [super loadData];
     self.dataIndex = 0;
-    [self.provider topicsForStart:self.dataIndex num:self.listLoadNumber];
-    [self.provider requestData];
+    [self reloadDataWithCache:YES];
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self.provider topicsForStart:self.dataIndex num:self.listLoadNumber];
-    [self.provider useCache:!isRefresh];
-    [self.provider requestData];
+    [self reloadDataWithCache:!isRefresh];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -119,30 +109,7 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
     }else{
         topic = self.dataArray[indexPath.row];
     }
-    cell.lblTitle.text = topic.title;
-    [cell.lblTitle sizeThatFits:CGSizeMake(191, 45)];
-    [cell.imgPic setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:topic.images]]];
-    NSString *visitstr = [NSString stringWithFormat:@"%d人浏览",topic.visits];
-    NSString *commentstr = [NSString stringWithFormat:@"%d人跟帖",topic.comments];
-    [cell.lblVisitCnt setText:visitstr afterInheritingLabelAttributesAndConfiguringWithBlock:^(NSMutableAttributedString *mutableAttributedString) {
-        NSRange strRange = [visitstr rangeOfString:@"人"];
-        strRange.length = strRange.location;
-        strRange.location = 0;
-        if (strRange.location != NSNotFound) {
-            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)RGBCOLOR(0, 149, 134).CGColor range:strRange];
-        }
-        return mutableAttributedString;
-    }];
-    cell.lblCommentCnt.left = cell.lblVisitCnt.left + cell.lblVisitCnt.width + 5;
-    [cell.lblCommentCnt setText:commentstr afterInheritingLabelAttributesAndConfiguringWithBlock:^(NSMutableAttributedString *mutableAttributedString) {
-        NSRange strRange = [commentstr rangeOfString:@"人"];
-        strRange.length = strRange.location;
-        strRange.location = 0;
-        if (strRange.location != NSNotFound) {
-            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)RGBCOLOR(0, 149, 134).CGColor range:strRange];
-        }
-        return mutableAttributedString;
-    }];
+    cell.topic = topic;
     
     return cell;
 }
@@ -178,7 +145,6 @@ static NSString *kTopicTableViewCellIdentify = @"TopicTableViewCell";
         }
     }else{
         if (section==0) {
-//            lblTitle.textColor = RGBCOLOR(0, 149, 134);
             lblTitle.text = @"我参加的话题";
         }
         if (section<2) {

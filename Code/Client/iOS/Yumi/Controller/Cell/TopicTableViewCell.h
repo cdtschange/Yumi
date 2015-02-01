@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *lblVisitCnt;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *lblCommentCnt;
 
+@property (nonatomic, strong) Topic *topic;
+
 @end

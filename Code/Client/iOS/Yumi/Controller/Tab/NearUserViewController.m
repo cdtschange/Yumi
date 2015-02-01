@@ -8,13 +8,11 @@
 
 #import "NearUserViewController.h"
 #import "FriendTableViewCell.h"
-#import "UILabel+SuffixView.h"
 
 static NSString *kNearUserTableViewCellIdentify = @"NearUserTableViewCell";
 
 @interface NearUserViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
 @property (strong, nonatomic) NSArray *purposeArray;
 @property (assign, nonatomic) BOOL isloaded;
 
@@ -43,6 +41,17 @@ static NSString *kNearUserTableViewCellIdentify = @"NearUserTableViewCell";
         }
     }
 }
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak NearUserViewController *weakself = self;
+    NearUserAPIData *data = [NearUserAPIData initWithLon:0 lat:0];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        NearUserAPIData *data = responseObject;
+        [weakself dataArrayChanged:data.users];
+        [weakself.tableView reloadData];
+    } failure:self.listFailureBlock];
+    [self setListNetworkStateOfTask:task];
+}
 -(WaterViewType)listType{
     return WaterRefreshTypeOnlyRefresh;
 }
@@ -52,20 +61,7 @@ static NSString *kNearUserTableViewCellIdentify = @"NearUserTableViewCell";
 -(void)initUIAndData{
     [super initUIAndData];
     self.title = @"附近的人";
-    
     self.purposeArray = @[@"想找个人练口语",@"想找个有缘人",@"想提升外语水平",@"想和同学一起学习"];
-    
-    __weak NearUserViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        NearUserData *data = responseObject;
-        [weakself dataArrayChanged:data.users];
-        [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    self.provider.statusBlock = self.listStatusBlock;
-    
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
     [self loadData];
@@ -78,15 +74,12 @@ static NSString *kNearUserTableViewCellIdentify = @"NearUserTableViewCell";
     }
     self.isloaded= YES;
     self.dataIndex = 0;
-    [self.provider nearUserForLon:0 lat:0];
-    [self.provider requestData];
+    [self reloadDataWithCache:YES];
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self.provider nearUserForLon:0 lat:0];
-    [self.provider useCache:!isRefresh];
-    [self.provider requestData];
+    [self reloadDataWithCache:!isRefresh];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -105,27 +98,15 @@ static NSString *kNearUserTableViewCellIdentify = @"NearUserTableViewCell";
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FriendTableViewCell" owner:self options:nil] objectAtIndex:2];
     }
-    User *user = self.dataArray[indexPath.row];
-    cell.lblName.text = user.u_name;
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:user.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
-    cell.lblPosition.text = user.school;
-    BOOL isFemale = [user.sex isEqualToString:@"0"];
-    cell.imgGender.image = [UIImage imageNamed:isFemale?@"icon_female":@"icon_male"];
-    [cell.lblName setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.lblName sizeToFit];
-    cell.lblName.height = 21;
-//    cell.lblName.suffixView = cell.imgGender;
-    int i = arc4random() % 2;
-    cell.lblLevel2.hidden = i>0;
-    i = arc4random() % 4;
+    cell.user = self.dataArray[indexPath.row];
+    int i = arc4random() % 4;
     cell.lblPurpose.text = self.purposeArray[i];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     User *user = self.dataArray[indexPath.row];
-        [self routeToName:@"UserProfileViewController" params:@{@"uid":user.uid}];
+    [self routeToName:@"UserProfileViewController" params:@{@"uid":user.uid}];
 }
-
 
 @end

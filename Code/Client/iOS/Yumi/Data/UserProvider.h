@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YumiNetworkProvider.h"
+#import "YumiNetAPIData.h"
 
 @interface UserProvider : NSObject
 + (UserProvider *)shared;
@@ -15,12 +15,10 @@
 -(void)clearCookies;
 -(void)logout;
 
--(void)userLoginForUserName:(NSString *)userName passwd:(NSString *)passwd
-                statusBlock:(void (^)(NetworkProviderStatus status, NSError *error))statusBlock
+-(NSURLSessionTask *)userLoginForUserName:(NSString *)userName passwd:(NSString *)passwd
                     success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure;
--(void)userInfoWithStatusBlock:(void (^)(NetworkProviderStatus status, NSError *error))statusBlock
-                       success:(void (^)(id responseObject))success
+-(NSURLSessionTask *)userInfoWithSuccess:(void (^)(id responseObject))success
                        failure:(void (^)(NSError *error))failure;
 -(void)loadUnreadMessage;
 

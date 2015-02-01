@@ -8,14 +8,9 @@
 
 #import "UserProvider.h"
 #import "AccountEntity.h"
-#import "YumiNetworkInfo.h"
-#import "YumiNetworkProvider.h"
 #import "GlobalConfig.h"
 
 @interface UserProvider()
-
-@property(nonatomic, strong)    NetworkProvider  *networkProvider;
-@property(nonatomic, strong)    NetworkProvider  *unreadProvider;
 
 @end
 
@@ -43,39 +38,23 @@
 }
 
 
--(void)userLoginForUserName:(NSString *)userName passwd:(NSString *)passwd
-                     statusBlock:(void (^)(NetworkProviderStatus status, NSError *error))statusBlock
+-(NSURLSessionDataTask *)userLoginForUserName:(NSString *)userName passwd:(NSString *)passwd
                     success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    YumiNetworkProvider *provider = [YumiNetworkProvider new];
-    [provider userLoginForUserName:userName passwd:passwd];
-    self.networkProvider = provider;
-    self.networkProvider.statusBlock = statusBlock;
-    [provider requestWithSuccess:^(id responseObject) {
-        UserLoginData *data = responseObject;
+    __weak UserProvider *weakself = self;
+    return [[UserLoginAPIData initWithUserName:userName passwd:passwd] requestWithSuccess:^(id responseObject) {
+        UserLoginAPIData *data = responseObject;
         [AccountEntity shared].uid = data.uid;
-//        [AccountEntity shared].name = data.user.u_name;
-//        [AccountEntity shared].mobile = data.user.mobile;
-//        [AccountEntity shared].picsrc = data.user.pic;
-//        [AccountEntity shared].token = data.user.token;
         if (success) {
             success(responseObject);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_RefreshLogin object:nil];
-        [self userInfoWithStatusBlock:nil success:nil failure:nil];
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+        [weakself userInfoWithSuccess:nil failure:nil];
+    } failure:failure];
 }
 
--(void)userInfoWithStatusBlock:(void (^)(NetworkProviderStatus, NSError *))statusBlock success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    YumiNetworkProvider *provider = [YumiNetworkProvider new];
-    [provider profileForTuid:[AccountEntity shared].uid];
-    self.networkProvider = provider;
-    self.networkProvider.statusBlock = statusBlock;
-    [provider requestWithSuccess:^(id responseObject) {
-        ProfileData *data = responseObject;
+-(NSURLSessionDataTask *)userInfoWithSuccess:(void (^)(id))success failure:(void (^)(NSError *))failure{
+    return [[UserProfileAPIData initWithTuid:[AccountEntity shared].uid] requestWithSuccess:^(id responseObject) {
+        UserProfileAPIData *data = responseObject;
         [AccountEntity shared].uid = data.uid;
         [AccountEntity shared].name = data.u_name;
         [AccountEntity shared].mobile = data.account;
@@ -84,25 +63,17 @@
             success(responseObject);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_RefreshLogin object:nil];
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    } failure:failure];
 }
 
 -(void)loadUnreadMessage{
-    YumiNetworkProvider *provider = [YumiNetworkProvider new];
     NSString *cids = [AccountEntity shared].cids;
     NSString *times = [AccountEntity shared].cidtimes;
     if (!cids||!times) {
         return;
     }
-    [provider unreadChatsForCid:cids time:times];
-    self.unreadProvider = provider;
-    provider.statusBlock = nil;
-    [provider requestWithSuccess:^(id responseObject) {
-        UnreadChatsData *data = responseObject;
+    [[UnreadChatsAPIData initWithCid:cids time:times] requestWithSuccess:^(id responseObject) {
+        UnreadChatsAPIData *data = responseObject;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_RefreshUnreadChat object:data];
     } failure:nil];
 }

@@ -13,7 +13,6 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
 
 @interface FriendsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
 @property (strong, nonatomic) NSArray *guideArray;
 
 @end
@@ -30,6 +29,17 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak FriendsViewController *weakself = self;
+    UsersAPIData *data = [UsersAPIData init];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        UsersAPIData *data = responseObject;
+        [weakself dataArrayChanged:data.users];
+        [weakself.tableView reloadData];
+    } failure:self.listFailureBlock];
+    [self setListNetworkStateOfTask:task];
+}
 -(WaterViewType)listType{
     return WaterRefreshTypeOnlyRefresh;
 }
@@ -48,16 +58,6 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     u3.u_name = @"标签";
     u3.pic = @"icon_friend_tag";
     self.guideArray = [NSMutableArray arrayWithArray:@[u1,u2,u3]];
-    __weak FriendsViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        UsersData *data = responseObject;
-        [weakself dataArrayChanged:data.users];
-        [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    self.provider.statusBlock = self.listStatusBlock;
     
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
@@ -66,15 +66,11 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
 -(void)loadData{
     [super loadData];
     self.dataIndex = 0;
-    [self.provider users];
-    [self.provider requestData];
+    [self reloadDataWithCache:YES];
 }
-
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self.provider users];
-    [self.provider useCache:!isRefresh];
-    [self.provider requestData];
+    [self reloadDataWithCache:!isRefresh];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -104,7 +100,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
         [cell.imgHead setImage:[UIImage imageNamed:user.pic]];
     }else{
         user = self.dataArray[indexPath.row];
-        [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:user.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
+        [cell.imgHead setImageWithURL:[NSURL URLWithString:[user.pic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
     }
     cell.lblName.text = user.u_name;
     
@@ -140,12 +136,6 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 10)];
     view.backgroundColor = RGBCOLOR(250,250,250);
-//    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-//    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 9, 320, 1)];
-//    line1.backgroundColor = RGBCOLOR(228,229,230);
-//    line2.backgroundColor = RGBCOLOR(228,229,230);
-//    [view addSubview:line1];
-//    [view addSubview:line2];
     return view;
 }
 @end

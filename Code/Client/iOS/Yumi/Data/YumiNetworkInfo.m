@@ -9,7 +9,6 @@
 #import "YumiNetworkInfo.h"
 #import "AccountEntity.h"
 #import "AppConfigEntity.h"
-#import "YumiNetworkProvider.h"
 
 @implementation YumiNetworkInfo
 
@@ -51,7 +50,7 @@
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
-    [YumiNetworkProvider clearCookies];
+//    [YumiNetworkProvider clearCookies];
 }
 
 - (int)apiVersion
@@ -87,7 +86,7 @@
     return [NSString stringWithFormat:format, hashid];
 }
 
-+ (NSString *)imageSmallURLWithHead:(NSString *)headURL
++ (NSString *)imageSmallWithUrl:(NSString *)headURL
 {
     return [YumiNetworkInfo imageURLWithHead:headURL type:@""];
 }
@@ -156,5 +155,13 @@ static YumiNetworkInfo *sharedInstance = nil;
     return self;
 }
 
+
+@end
+
+@implementation NSString(ImageURL)
+
+-(NSString *)imageSmall{
+    return [YumiNetworkInfo imageURLWithHead:self type:@""];
+}
 
 @end

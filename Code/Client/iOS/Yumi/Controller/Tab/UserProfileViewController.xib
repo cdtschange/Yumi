@@ -28,72 +28,71 @@
                         <outlet property="delegate" destination="-1" id="HYC-Ld-Kyf"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-64-DMc">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqP-LU-BAY">
-                            <rect key="frame" x="60" y="35" width="200" height="40"/>
-                            <color key="backgroundColor" red="0.0" green="0.75294117650000003" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="AGQ-nX-Uca"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <state key="normal" title="发起聊天">
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="click_chat:" destination="-1" eventType="touchUpInside" id="UeJ-Me-rsR"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBZ-l0-btQ">
-                            <rect key="frame" x="60" y="86" width="200" height="40"/>
-                            <color key="backgroundColor" red="0.0" green="0.75294117650000003" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="VfA-PW-3Ey"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <state key="normal" title="添加为好友">
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="解除好友关系"/>
-                            <connections>
-                                <action selector="click_add:" destination="-1" eventType="touchUpInside" id="HAR-jH-XmE"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="BBZ-l0-btQ" firstAttribute="top" secondItem="VqP-LU-BAY" secondAttribute="bottom" constant="19" id="6Z8-A3-VHW"/>
-                        <constraint firstItem="BBZ-l0-btQ" firstAttribute="top" secondItem="VqP-LU-BAY" secondAttribute="bottom" constant="11" id="9MF-Wq-YIy"/>
-                        <constraint firstItem="VqP-LU-BAY" firstAttribute="leading" secondItem="vpw-64-DMc" secondAttribute="leading" constant="60" id="EuV-Fv-lyI"/>
-                        <constraint firstAttribute="bottom" secondItem="BBZ-l0-btQ" secondAttribute="bottom" constant="23" id="N77-gm-RHv"/>
-                        <constraint firstAttribute="trailing" secondItem="BBZ-l0-btQ" secondAttribute="trailing" constant="60" id="N8w-h2-CmE"/>
-                        <constraint firstItem="BBZ-l0-btQ" firstAttribute="leading" secondItem="vpw-64-DMc" secondAttribute="leading" constant="60" id="aMN-AI-wn6"/>
-                        <constraint firstItem="VqP-LU-BAY" firstAttribute="top" secondItem="vpw-64-DMc" secondAttribute="top" constant="35" id="oPk-Yk-WUf"/>
-                        <constraint firstAttribute="height" constant="149" id="qrs-1p-WHz"/>
-                        <constraint firstAttribute="trailing" secondItem="VqP-LU-BAY" secondAttribute="trailing" constant="60" id="xWa-kX-x4G"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="6Z8-A3-VHW"/>
-                            <exclude reference="N77-gm-RHv"/>
-                        </mask>
-                    </variation>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vpw-64-DMc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Kv-bu-gkg"/>
                 <constraint firstAttribute="bottom" secondItem="S6d-ij-tcK" secondAttribute="bottom" id="Alx-eG-Gb8"/>
-                <constraint firstAttribute="trailing" secondItem="vpw-64-DMc" secondAttribute="trailing" id="SCe-n9-1mQ"/>
                 <constraint firstItem="S6d-ij-tcK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Sw0-99-RwR"/>
-                <constraint firstItem="vpw-64-DMc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UWD-jp-jQT"/>
                 <constraint firstItem="S6d-ij-tcK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ld3-u9-TIg"/>
                 <constraint firstAttribute="trailing" secondItem="S6d-ij-tcK" secondAttribute="trailing" id="oaQ-1M-9qv"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="295" y="271"/>
+        </view>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-64-DMc">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqP-LU-BAY">
+                    <rect key="frame" x="60" y="18" width="200" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.75294117650000003" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="AGQ-nX-Uca"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="发起聊天">
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click_chat:" destination="-1" eventType="touchUpInside" id="UeJ-Me-rsR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBZ-l0-btQ">
+                    <rect key="frame" x="60" y="69" width="200" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.75294117650000003" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="VfA-PW-3Ey"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="添加为好友">
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" title="解除好友关系"/>
+                    <connections>
+                        <action selector="click_add:" destination="-1" eventType="touchUpInside" id="HAR-jH-XmE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="BBZ-l0-btQ" firstAttribute="top" secondItem="VqP-LU-BAY" secondAttribute="bottom" constant="19" id="6Z8-A3-VHW"/>
+                <constraint firstItem="BBZ-l0-btQ" firstAttribute="top" secondItem="VqP-LU-BAY" secondAttribute="bottom" constant="11" id="9MF-Wq-YIy"/>
+                <constraint firstItem="VqP-LU-BAY" firstAttribute="leading" secondItem="vpw-64-DMc" secondAttribute="leading" constant="60" id="EuV-Fv-lyI"/>
+                <constraint firstAttribute="bottom" secondItem="BBZ-l0-btQ" secondAttribute="bottom" constant="23" id="N77-gm-RHv"/>
+                <constraint firstAttribute="trailing" secondItem="BBZ-l0-btQ" secondAttribute="trailing" constant="60" id="N8w-h2-CmE"/>
+                <constraint firstItem="BBZ-l0-btQ" firstAttribute="leading" secondItem="vpw-64-DMc" secondAttribute="leading" constant="60" id="aMN-AI-wn6"/>
+                <constraint firstItem="VqP-LU-BAY" firstAttribute="top" secondItem="vpw-64-DMc" secondAttribute="top" constant="18" id="oPk-Yk-WUf"/>
+                <constraint firstAttribute="height" constant="149" id="qrs-1p-WHz"/>
+                <constraint firstAttribute="trailing" secondItem="VqP-LU-BAY" secondAttribute="trailing" constant="60" id="xWa-kX-x4G"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6Z8-A3-VHW"/>
+                    <exclude reference="N77-gm-RHv"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="295" y="674.5"/>
         </view>
     </objects>
 </document>

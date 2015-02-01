@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
+@property (nonatomic, strong) User *user;
+
 @end
 
 
@@ -38,5 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblLevel2;
 @property (weak, nonatomic) IBOutlet UILabel *lblPosition;
 @property (weak, nonatomic) IBOutlet UILabel *lblPurpose;
+
+@property (nonatomic, strong) User *user;
 
 @end

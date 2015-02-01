@@ -21,8 +21,9 @@
 #import "DDFileLogger.h"
 #import "DDASLLogger.h"
 #import "UIViewController+Yumi.h"
-#import "YumiNetworkProvider.h"
 #import "YumiNetworkInfo.h"
+
+#import "YumiNetAPIData.h"
 #import "YumiData.h"
 #import "TMCache.h"
 #import "Category_Kit.h"

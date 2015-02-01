@@ -13,8 +13,6 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
 
 @interface NewFriendsViewController ()<NewFriendTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property (strong, nonatomic) YumiNetworkProvider *acceptProvider;
 
 @end
 
@@ -30,8 +28,19 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak NewFriendsViewController *weakself = self;
+    UserRequestsAPIData *data = [UserRequestsAPIData init];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        UserRequestsAPIData *data = responseObject;
+        [weakself dataArrayChanged:data.users];
+        [weakself.tableView reloadData];
+    } failure:self.listFailureBlock];
+    [self setListNetworkStateOfTask:task];
+}
 -(WaterViewType)listType{
-    return WaterRefreshTypeNone;
+    return WaterRefreshTypeOnlyRefresh;
 }
 -(UIScrollView *)listView{
     return self.tableView;
@@ -40,17 +49,6 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
     [super initUIAndData];
     self.title = @"新的朋友";
     
-    __weak NewFriendsViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        UserRequestsData *data = responseObject;
-        [weakself dataArrayChanged:data.users];
-        [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    self.provider.statusBlock = self.listStatusBlock;
-    
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
     [self loadData];
@@ -58,15 +56,12 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
 -(void)loadData{
     [super loadData];
     self.dataIndex = 0;
-    [self.provider userRequests];
-    [self.provider requestData];
+    [self reloadDataWithCache:NO];
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self.provider userRequests];
-    [self.provider useCache:!isRefresh];
-    [self.provider requestData];
+    [self reloadDataWithCache:!isRefresh];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -87,11 +82,7 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
         cell.delegate = self;
     }
     User *user = self.dataArray[indexPath.row];
-    cell.lblName.text = user.u_name;
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:user.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
-    cell.lblInfo.text = user.reason;
-    cell.btn.backgroundColor = user.state>0?COLOR_Default_Green:RGBCOLOR(210, 211, 214);
-    cell.btn.enabled = user.state>0;
+    cell.user = user;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,19 +91,14 @@ static NSString *kFriendTableViewCellIdentify = @"NewFriendTableViewCell";
     [self routeToName:@"UserProfileViewController" params:@{@"uid":user.uid}];
 }
 -(void)cell_clickAddForCell:(NewFriendTableViewCell *)cell sender:(id)sender{
-    __weak NewFriendsViewController *weakself = self;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.acceptProvider = [YumiNetworkProvider new];
     __weak User *user = self.dataArray[indexPath.row];
-    [self.acceptProvider acceptUserForTuid:user.uid];
-    [self.acceptProvider setCompletionBlockWithSuccess:^(id responseObject) {
+    __weak NewFriendsViewController *weakself = self;
+    NSURLSessionTask *task = [[AcceptUserAPIData initWithTuid:user.uid] requestWithSuccess:^(id responseObject) {
         user.state = 0;
         [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.failureBlock(error);
-    }];
-    self.acceptProvider.statusBlock = self.statusBlock;
-    [self.acceptProvider requestData];
+    } failure:self.failureBlock];
+    [weakself setNetworkStateOfTask:task];
 }
 
 @end

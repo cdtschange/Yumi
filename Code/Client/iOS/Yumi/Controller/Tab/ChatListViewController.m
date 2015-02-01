@@ -15,8 +15,6 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
 @interface ChatListViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property(nonatomic, strong)    NetworkProvider  *unreadProvider;
 @property (assign, nonatomic) int lasttime;
 
 @end
@@ -46,6 +44,28 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
     }
 }
 
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak ChatListViewController *weakself = self;
+    ChatsAPIData *data = [ChatsAPIData initWithStart:self.dataIndex num:self.listLoadNumber];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        ChatsAPIData *data = responseObject;
+        [weakself dataArrayChanged:data.chats];
+        
+        NSString *cids = [AccountEntity shared].cids;
+        NSString *times = [AccountEntity shared].cidtimes;
+        cids = cids?cids:@"";
+        times = times?times:@"";
+        [[UnreadChatsAPIData initWithCid:cids time:times] requestWithSuccess:^(id responseObject) {
+            UnreadChatsAPIData *data = responseObject;
+            [weakself updateBadge:data];
+            [weakself.tableView reloadData];
+        } failure:nil];
+        [weakself.tableView reloadData];
+        [weakself setNetworkStateOfTask:task];
+    } failure:weakself.listFailureBlock];
+    [self setListNetworkStateOfTask:task];
+}
 -(WaterViewType)listType{
     return WaterRefreshTypeOnlyRefresh;
 }
@@ -55,37 +75,9 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
 -(void)initUIAndData{
     [super initUIAndData];
     
-    __weak ChatListViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        ChatsData *data = responseObject;
-        [weakself dataArrayChanged:data.chats];
-        YumiNetworkProvider *provider = [YumiNetworkProvider new];
-        NSString *cids = [AccountEntity shared].cids;
-        NSString *times = [AccountEntity shared].cidtimes;
-        cids = cids?cids:@"";
-        times = times?times:@"";
-        [provider unreadChatsForCid:cids time:times];
-        weakself.unreadProvider = provider;
-        provider.statusBlock = weakself.listStatusBlock;
-        [provider requestWithSuccess:^(id responseObject) {
-            UnreadChatsData *data = responseObject;
-            [weakself updateBadge:data];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-//            weakself.listFailureBlock(error);
-            [weakself.tableView reloadData];
-        }];
-
-        [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-        weakself.listFailureBlock(error);
-    }];
-    self.provider.statusBlock = self.listStatusBlock;
-    
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
-    [[UserProvider shared] userInfoWithStatusBlock:nil success:nil failure:nil];
+    [[UserProvider shared] userInfoWithSuccess:nil failure:nil];
     [self loadData];
 }
 -(void)loadData{
@@ -94,15 +86,12 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
         return;
     }
     self.dataIndex = 0;
-    [self.provider chatsForStart:self.dataIndex num:self.listLoadNumber];
-    [self.provider requestData];
+    [self reloadDataWithCache:YES];
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self.provider chatsForStart:self.dataIndex num:self.listLoadNumber];
-    [self.provider useCache:!isRefresh];
-    [self.provider requestData];
+    [self reloadDataWithCache:!isRefresh];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -113,7 +102,7 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify_RefreshChatList:) name:NOTIFY_RefreshChatList object:nil];
 }
 - (void)notify_RefreshUnreadChat:(NSNotification *)notify{
-    UnreadChatsData *data = notify.object;
+    UnreadChatsAPIData *data = notify.object;
     [self updateBadge:data];
 }
 - (void)notify_RefreshChatList:(NSNotification *)notify{
@@ -133,7 +122,7 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
     }
 }
 
--(void)updateBadge:(UnreadChatsData *)data{
+-(void)updateBadge:(UnreadChatsAPIData *)data{
     self.lasttime = (int)[NSDate date].timeIntervalSince1970;
     BOOL isChanged = NO;
     for (Chats *uc in data.chats) {
@@ -179,7 +168,7 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
     cell.badgeView.badgeString = [NSString stringWithFormat:@"%d", chats.badge];
     cell.lblTitle.text = chats.title;
     cell.lblContent.text = chats.words;
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:chats.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
+    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:chats.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
     cell.lblTime.text = [DateUtils timeConvertToShort:chats.time];
 
     return cell;

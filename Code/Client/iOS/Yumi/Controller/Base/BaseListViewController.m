@@ -57,7 +57,7 @@
 }
 
 -(void)showErrorTip:(NSError *)error{
-    NSString *errorMsg = [YumiNetworkProvider errorToString:error];
+    NSString *errorMsg = [YumiNetAPIData errorToString:error];
     [self showInfoTip:errorMsg];
 }
 

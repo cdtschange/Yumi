@@ -16,4 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPosition;
 @property (weak, nonatomic) IBOutlet UIImageView *imgPosition;
 
+@property (nonatomic, strong) TopicReply *reply;
+@property (nonatomic, strong) TopicReplyComment *replyComment;
+
 @end

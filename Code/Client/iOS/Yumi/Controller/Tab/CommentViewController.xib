@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="写点评论吧" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRI-mm-cIW">
-                            <rect key="frame" x="15" y="4" width="291" height="21"/>
+                            <rect key="frame" x="15" y="4" width="65" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -34,6 +34,11 @@
                         <constraint firstAttribute="trailing" secondItem="QRI-mm-cIW" secondAttribute="trailing" constant="14" id="faY-UJ-Lha"/>
                         <constraint firstItem="QRI-mm-cIW" firstAttribute="leading" secondItem="cvA-jX-sjR" secondAttribute="leading" constant="15" id="xaD-9Q-PB0"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="faY-UJ-Lha"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rd1-Bv-iq7">
                     <rect key="frame" x="0.0" y="30" width="320" height="1"/>

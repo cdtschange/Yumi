@@ -19,7 +19,6 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
 @property (weak, nonatomic) IBOutlet UIButton *btnTopic2;
 @property (weak, nonatomic) IBOutlet UIButton *btnTopic3;
 @property (weak, nonatomic) IBOutlet UIButton *btnTopic4;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
 @property (strong, nonatomic) NSArray *topics;
 
 @end
@@ -36,41 +35,12 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-
--(WaterViewType)listType{
-    return WaterRefreshTypeNone;
-}
--(UIScrollView *)listView{
-    return self.tableView;
-}
--(void)initUIAndData{
-    [super initUIAndData];
-    
-    self.source = @[
-  @{@"title":@"语密圈",@"url":@"CircleFriendsViewController",@"image":@"icon_find_circle"},
-  @{@"title":@"附近可能认识的人",@"url":@"NearUserViewController",@"image":@"icon_find_near"},
-  @{@"title":@"发现话题",@"info":@"发现热门好的话题",@"url":@"TopicListViewController",@"image":@"icon_find_topic"},
-  @{@"title":@"寻找群组",@"info":@"发现感兴趣的群组",@"image":@"icon_find_group"},
-  @{@"title":@"语谜活动",@"info":@"发现好玩的活动",@"image":@"icon_find_activity"}];
-    
-    UIView * view = [[UIView alloc] init];
-    self.tableView.tableFooterView = view;
-    [self.viewHeader removeFromSuperview];
-    self.viewHeader.top = 0;
-    [self.viewHeader setTranslatesAutoresizingMaskIntoConstraints:YES];
-    self.tableView.tableHeaderView = self.viewHeader;
-    [self loadData];
-}
--(void)loadData{
-    [super loadData];
-    self.dataIndex = 0;
-    [self dataArrayChanged:self.source];
-    [self.tableView reloadData];
-    
+-(void)reloadDataWithCache:(BOOL)cache{
     __weak FindViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        TopicsData *data = responseObject;
+    TopicsAPIData *data = [TopicsAPIData initWithStart:0 num:4];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        TopicsAPIData *data = responseObject;
         NSMutableArray *arr = [NSMutableArray arrayWithArray:data.topics];
         weakself.topics = arr;
         if (arr.count>0) {
@@ -94,19 +64,41 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
             [weakself.btnTopic4 setTitle:str forState:UIControlStateNormal];
         }
         [weakself.tableView reloadData];
-    } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-    }];
-    self.provider.statusBlock = self.statusBlock;
-    [self.provider topicsForStart:0 num:4];
-    [self.provider requestData];
+    } failure:self.failureBlock];
+    [self setNetworkStateOfTask:task];
+}
+-(WaterViewType)listType{
+    return WaterRefreshTypeNone;
+}
+-(UIScrollView *)listView{
+    return self.tableView;
+}
+-(void)initUIAndData{
+    [super initUIAndData];
+    
+    self.source = @[
+  @{@"title":@"语密圈",@"url":@"CircleFriendsViewController",@"image":@"icon_find_circle"},
+  @{@"title":@"附近可能认识的人",@"url":@"NearUserViewController",@"image":@"icon_find_near"},
+  @{@"title":@"发现话题",@"info":@"发现热门好的话题",@"url":@"TopicListViewController",@"image":@"icon_find_topic"},
+  @{@"title":@"寻找群组",@"info":@"发现感兴趣的群组",@"image":@"icon_find_group"},
+  @{@"title":@"语谜活动",@"info":@"发现好玩的活动",@"image":@"icon_find_activity"}];
+    
+    UIView * view = [[UIView alloc] init];
+    self.tableView.tableFooterView = view;
+    self.tableView.tableHeaderView = self.viewHeader;
+    [self loadData];
+}
+-(void)loadData{
+    [super loadData];
+    self.dataIndex = 0;
+    [self dataArrayChanged:self.source];
+    [self.tableView reloadData];
+    [self reloadDataWithCache:YES];
 
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
-    [self dataArrayChanged:self.source];
-    [self.tableView reloadData];
 }
 -(void)initNavigationBar{
     [super initNavigationBar];
@@ -212,16 +204,6 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
     view.backgroundColor = RGBCOLOR(250,250,250);
-//    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
-//    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 19, self.view.width, 1)];
-//    line1.backgroundColor = RGBCOLOR(228,229,230);
-//    line2.backgroundColor = RGBCOLOR(228,229,230);
-//    if (section>0) {
-//        [view addSubview:line1];
-//    }
-//    if (section<3) {
-//        [view addSubview:line2];
-//    }
     return view;
 }
 

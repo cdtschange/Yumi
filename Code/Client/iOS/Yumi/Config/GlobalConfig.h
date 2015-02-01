@@ -119,6 +119,7 @@
 #define IMG_HOME_CELL_ICON3 @"icon_home_cell3"
 
 #define IMG_HEAD_DEFAULT @"icon_head_default"
+#define UIIMG_HEAD_DEFAULT [UIImage imageNamed:IMG_HEAD_DEFAULT]
 
 
 #pragma mark - Text

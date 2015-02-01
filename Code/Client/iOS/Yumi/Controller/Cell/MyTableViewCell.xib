@@ -22,8 +22,8 @@
                             <constraint firstAttribute="height" constant="35" id="vNO-xi-UIh"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqy-A5-mEK">
-                        <rect key="frame" x="59" y="12" width="214" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqy-A5-mEK">
+                        <rect key="frame" x="59" y="12" width="32" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="cOl-j0-lnS"/>
                         </constraints>
@@ -39,6 +39,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Bqy-A5-mEK" secondAttribute="trailing" constant="6" id="ceX-ra-fBO"/>
                     <constraint firstItem="LAj-sQ-tZa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="nEN-hc-hcC"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ceX-ra-fBO"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imgPic" destination="LAj-sQ-tZa" id="kyF-Ig-dP4"/>

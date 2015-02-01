@@ -79,7 +79,7 @@
     }else{
         self.title = @"详细资料";
         self.btnHead.isRounded = YES;
-        [self.btnHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:[AccountEntity shared].picsrc]]  placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT] forState:UIControlStateNormal];
+        [self.btnHead setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:[AccountEntity shared].picsrc]]  placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
     }
 }
 @end

@@ -32,11 +32,6 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
 @property (weak, nonatomic) IBOutlet UIButton *btnPublish;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *viewCursor;
-@property (strong, nonatomic) YumiNetworkProvider *replyProvider;
-@property (strong, nonatomic) YumiNetworkProvider *followerProvider;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property (strong, nonatomic) YumiNetworkProvider *followProvider;
-@property (strong, nonatomic) YumiNetworkProvider *commentProvider;
 @property (copy, nonatomic) NSString *sort;
 
 @end
@@ -52,35 +47,121 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)reloadDataWithCache:(BOOL)cache{
+    __weak TopicDetailViewController *weakself = self;
+    if ([self.sort isEqualToString: @"follower"]) {
+        TopicFollowersAPIData *data = [TopicFollowersAPIData initWithTid:self.tid];
+        data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+        NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+            TopicFollowersAPIData *data = responseObject;
+            [weakself dataArrayChanged:data.users];
+            [weakself.tableView reloadData];
+        } failure:self.listFailureBlock];
+        [self setListNetworkStateOfTask:task];
+    }else{
+        TopicRepliesAPIData *data = [TopicRepliesAPIData initWithTid:self.tid sort:self.sort];
+        data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+        NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+            TopicRepliesAPIData *data = responseObject;
+            [weakself dataArrayChanged:data.topicReplies];
+            [weakself.tableView reloadData];
+        } failure:self.listFailureBlock];
+        [self setListNetworkStateOfTask:task];
+    }
+}
+-(WaterViewType)listType{
+    return WaterRefreshTypeOnlyRefresh;
+}
+-(UIScrollView *)listView{
+    return self.tableView;
+}
+-(void)initUIAndData{
+    [super initUIAndData];
+    self.title = @"话题详情";
+    self.sort = @"time";
+    
+    UIView * view = [[UIView alloc] init];
+    self.tableView.tableFooterView = view;
+    [self.viewHeader setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.viewCursor setTranslatesAutoresizingMaskIntoConstraints:YES];
+    
+    self.btnFollow.layer.cornerRadius = 3;
+    self.btnFollow.layer.masksToBounds = YES;
+    self.btnFollow.layer.borderColor = COLOR_Default_Green.CGColor;
+    self.btnFollow.layer.borderWidth = 1;
+    self.btnPublish.layer.cornerRadius = 3;
+    self.btnPublish.layer.masksToBounds = YES;
+    [self loadData];
+}
+-(void)loadData{
+    [super loadData];
+    
+    __weak TopicDetailViewController *weakself = self;
+    NSURLSessionTask *task = [[TopicAPIData initWithTid:self.tid] requestWithSuccess:^(id responseObject) {
+        TopicAPIData *data = responseObject;
+        weakself.lblTitle.text = data.title;
+        weakself.lblContent.text = data.info;
+        CGRect rectToFit = [weakself.lblContent.text boundingRectWithSize:CGSizeMake(weakself.lblContent.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        double height = rectToFit.size.height;
+        weakself.viewHeader.height = 237 - 17 + height;
+        weakself.tableView.tableHeaderView = weakself.viewHeader;
+        weakself.viewCursor.top = weakself.viewHeader.height-2;
+        double cw = weakself.viewCursor.width;
+        double vw = weakself.view.width;
+        weakself.viewCursor.left = (vw/3-cw)/2;
+        
+        [weakself.tableView reloadData];
+        [weakself.imgIcon setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:data.pic]]];
+        weakself.imgIcon.isRounded = YES;
+        if (data.isfollowed) {
+            weakself.btnFollow.selected = YES;
+            weakself.btnFollow.backgroundColor = COLOR_Default_Green;
+        }else{
+            weakself.btnFollow.selected = NO;
+            weakself.btnFollow.backgroundColor = [UIColor whiteColor];
+        }
+        weakself.btnLike.selected = data.islike>0;
+        if (data.islike>0) {
+            [self.btnLike setTitle:@"1" forState:UIControlStateNormal];
+        }
+    } failure:self.failureBlock];
+    [weakself setNetworkStateOfTask:task];
+    
+    self.dataIndex = 0;
+    [self reloadDataWithCache:YES];
+}
+
+-(void)scrollViewPulling:(BOOL)isRefresh{
+    [super scrollViewPulling:isRefresh];
+    [self reloadDataWithCache:!isRefresh];
+}
+-(void)initNavigationBar{
+    [super initNavigationBar];
+    [self setBackLeftButtonOnNavBar];
+}
+
 - (IBAction)click_follow:(id)sender {
     __weak TopicDetailViewController *weakself = self;
-    self.followProvider = [YumiNetworkProvider new];
-    [self.followProvider operateTopicForTid:self.tid action:self.btnFollow.selected?@"unfollow":@"follow"];
-    self.followProvider.statusBlock = self.statusBlock;
-    [self.followProvider requestWithSuccess:^(id responseObject) {
+    NSURLSessionTask *task = [[OperateTopicAPIData initWithTid:self.tid action:self.btnFollow.selected?@"unfollow":@"follow"] requestWithSuccess:^(id responseObject) {
         weakself.btnFollow.selected = !weakself.btnFollow.selected;
         if (weakself.btnFollow.selected) {
             weakself.btnFollow.backgroundColor = COLOR_Default_Green;
         }else{
             weakself.btnFollow.backgroundColor = [UIColor whiteColor];
         }
-    } failure:^(NSError *error) {
-        weakself.failureBlock(error);
-    }];
+    } failure:self.failureBlock];
+    [self setNetworkStateOfTask:task];
 }
 - (IBAction)click_reply:(id)sender {
     __weak TopicDetailViewController *weakself = self;
     CommentViewController *vc = [UIViewController instanceByName:@"CommentViewController"];
     vc.block = ^(BOOL select, NSString *content) {
         if (select&&content.length>0) {
-            weakself.commentProvider = [YumiNetworkProvider new];
-            [weakself.commentProvider replyTopicForTid:weakself.tid content:content];
-            weakself.commentProvider.statusBlock = weakself.statusBlock;
-            [weakself.commentProvider requestWithSuccess:^(id responseObject) {
-                [weakself loadData];
-            } failure:^(NSError *error) {
-                weakself.failureBlock(error);
-            }];
+            NSURLSessionTask *task = [[ReplyTopicAPIData initWithTid:self.tid content:content] requestWithSuccess:^(id responseObject) {
+                [weakself reloadDataWithCache:NO];
+            } failure:self.failureBlock];
+            [self setNetworkStateOfTask:task];
         }
     };
     UINavigationController *nav = [[[self.navigationController class] alloc] initWithRootViewController:vc];
@@ -98,7 +179,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     self.btnTabNew.selected = NO;
     [(UIButton *)sender setSelected:YES];
     self.sort = @"time";
-    [self loadData];
+    [self reloadDataWithCache:YES];
 }
 - (IBAction)click_TabHot:(id)sender {
     double cw = self.viewCursor.width;
@@ -112,7 +193,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     self.btnTabNew.selected = NO;
     [(UIButton *)sender setSelected:YES];
     self.sort = @"hot";
-    [self loadData];
+    [self reloadDataWithCache:YES];
 }
 - (IBAction)click_TabFollow:(id)sender {
     double cw = self.viewCursor.width;
@@ -126,7 +207,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
     self.btnTabNew.selected = NO;
     [(UIButton *)sender setSelected:YES];
     self.sort = @"follower";
-    [self loadData];
+    [self reloadDataWithCache:YES];
 }
 - (IBAction)click_share:(id)sender {
     [[ShareUtils shared] shareWithText:@""];
@@ -140,142 +221,6 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
         cnt--;
     }
     [self.btnLike setTitle:[NSString stringWithFormat:@"%d",cnt] forState:UIControlStateNormal];
-}
-
-
--(WaterViewType)listType{
-    return WaterRefreshTypeOnlyRefresh;
-}
--(UIScrollView *)listView{
-    return self.tableView;
-}
--(void)initUIAndData{
-    [super initUIAndData];
-    self.title = @"话题详情";
-    self.sort = @"time";
-    
-    UIView * view = [[UIView alloc] init];
-    self.tableView.tableFooterView = view;
-    [self.viewHeader removeFromSuperview];
-    [self.viewHeader setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [self.lblContent setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [self.viewCursor setTranslatesAutoresizingMaskIntoConstraints:YES];
-    
-    self.btnFollow.layer.cornerRadius = 3;
-    self.btnFollow.layer.masksToBounds = YES;
-    self.btnFollow.layer.borderColor = COLOR_Default_Green.CGColor;
-    self.btnFollow.layer.borderWidth = 1;
-    self.btnPublish.layer.cornerRadius = 3;
-    self.btnPublish.layer.masksToBounds = YES;
-    [super loadData];
-    
-    __weak TopicDetailViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider topicForTid:self.tid];
-    self.provider.statusBlock = self.statusBlock;
-    [self.provider requestWithSuccess:^(id responseObject) {
-        TopicData *data = responseObject;
-        weakself.lblTitle.text = data.title;
-        weakself.lblContent.text = data.info;
-        weakself.lblContent.width = self.view.width - 125;
-        [weakself.lblContent sizeToFit];
-        double height = weakself.lblContent.height;
-        height = fmax(height, 41);
-        if (height>41) {
-            weakself.viewHeader.height = 247 + height-31;
-        }
-        weakself.tableView.tableHeaderView = weakself.viewHeader;
-        weakself.viewCursor.top = weakself.viewHeader.height-2;
-        double cw = weakself.viewCursor.width;
-        double vw = weakself.view.width;
-        weakself.viewCursor.left = (vw/3-cw)/2;
-        
-        [weakself.tableView reloadData];
-        [weakself.imgIcon setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:data.pic]]];
-        weakself.imgIcon.isRounded = YES;
-//        weakself.imgIcon.layer.borderColor = [UIColor whiteColor].CGColor;
-//        weakself.imgIcon.layer.borderWidth = 2;
-        if (data.isfollowed) {
-            weakself.btnFollow.selected = YES;
-            weakself.btnFollow.backgroundColor = COLOR_Default_Green;
-        }else{
-            weakself.btnFollow.selected = NO;
-            weakself.btnFollow.backgroundColor = [UIColor whiteColor];
-        }
-        weakself.btnLike.selected = data.islike>0;
-        if (data.islike>0) {
-            [self.btnLike setTitle:@"1" forState:UIControlStateNormal];
-        }
-        [weakself loadData];
-    } failure:^(NSError *error) {
-        weakself.failureBlock(error);
-    }];
-}
--(void)loadData{
-    [super loadData];
-    
-    __weak TopicDetailViewController *weakself = self;
-    self.dataIndex = 0;
-    if ([self.sort isEqualToString: @"follower"]) {
-        self.followerProvider = [YumiNetworkProvider new];
-        self.followerProvider.statusBlock = self.listStatusBlock;
-        [self.followerProvider topicFollowersForTid:self.tid];
-        [self.followerProvider requestWithSuccess:^(id responseObject) {
-            TopicFollowersData *data = responseObject;
-            [weakself dataArrayChanged:data.users];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        [self.followerProvider requestData];
-    }else{
-        self.replyProvider = [YumiNetworkProvider new];
-        self.replyProvider.statusBlock = self.listStatusBlock;
-        [self.replyProvider topicRepliesForTid:self.tid sort:self.sort];
-        [self.replyProvider setCompletionBlockWithSuccess:^(id responseObject) {
-            TopicRepliesData *data = responseObject;
-            [weakself dataArrayChanged:data.topicReplies];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-            weakself.listFailureBlock(error);
-        }];
-        [self.replyProvider requestData];
-    }
-}
-
--(void)scrollViewPulling:(BOOL)isRefresh{
-    [super scrollViewPulling:isRefresh];
-    __weak TopicDetailViewController *weakself = self;
-    if ([self.sort isEqualToString: @"follower"]) {
-        self.followerProvider = [YumiNetworkProvider new];
-        self.followerProvider.statusBlock = self.listStatusBlock;
-        [self.followerProvider topicFollowersForTid:self.tid];
-        self.followerProvider.statusBlock = self.statusBlock;
-        [self.followerProvider requestWithSuccess:^(id responseObject) {
-            TopicFollowersData *data = responseObject;
-            [weakself dataArrayChanged:data.users];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        [self.followerProvider requestData];
-    }else{
-        self.replyProvider = [YumiNetworkProvider new];
-        self.replyProvider.statusBlock = self.listStatusBlock;
-        [self.replyProvider topicRepliesForTid:self.tid sort:self.sort];
-        [self.replyProvider setCompletionBlockWithSuccess:^(id responseObject) {
-            TopicRepliesData *data = responseObject;
-            [weakself dataArrayChanged:data.topicReplies];
-            [weakself.tableView reloadData];
-        } failure:^(NSError *error) {
-            weakself.listFailureBlock(error);
-        }];
-        [self.replyProvider requestData];
-    }
-}
--(void)initNavigationBar{
-    [super initNavigationBar];
-    [self setBackLeftButtonOnNavBar];
 }
 
 #pragma mark - UITableViewDataSource
@@ -293,7 +238,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
         }
         User *user = self.dataArray[indexPath.row];
         cell.lblName.text = user.u_name;
-        [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:user.pic]]];
+        [cell.imgHead setImageWithURL:[NSURL URLWithString:[user.pic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
         return cell;
     }else{
         TopicReplyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTopicReplyTableViewCellIdentify];
@@ -301,22 +246,7 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
             cell = [[[NSBundle mainBundle] loadNibNamed:kTopicReplyTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
         }
         TopicReply *tp = self.dataArray[indexPath.row];
-        cell.lblName.text = tp.u_name;
-        [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:tp.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
-        
-        [cell.lblContent setTranslatesAutoresizingMaskIntoConstraints:YES];
-        
-        cell.lblContent.width = self.view.width - 101;
-        cell.lblContent.height = 21;
-        [cell.lblContent setLineBreakMode:NSLineBreakByCharWrapping];
-        cell.lblContent.numberOfLines = 0;
-        cell.lblContent.text = tp.text;
-        [cell.lblContent sizeToFit];
-        
-        cell.lblTime.text = [NSString stringWithFormat:@"%@发布", [DateUtils timeConvertToShort:tp.time]];
-        cell.lblPosition.text = tp.position;
-//        cell.lblPosition.top = cell.lblContent.top+cell.lblContent.height+5;
-//        cell.imgPosition.top = cell.lblPosition.top;
+        cell.reply = tp;
         return cell;
     }
 }
@@ -338,30 +268,9 @@ static NSString *kFriendTableViewCellIdentify = @"FriendTableViewCell";
         return 60;
     }
     TopicReply *tp = self.dataArray[indexPath.row];
-    double height = 95;
-    NSString *content = tp.text;
-    static UILabel* rtLableInstance = nil;
-    if (!rtLableInstance) {
-        TopicReplyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kTopicReplyTableViewCellIdentify];
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:kTopicReplyTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
-        }
-        UILabel *contentLabel = cell.lblContent;
-        contentLabel.font = [UIFont systemFontOfSize:14.0];
-        [contentLabel setLineBreakMode:NSLineBreakByCharWrapping];
-        [contentLabel setTextAlignment:NSTextAlignmentLeft];
-        [contentLabel setNumberOfLines:0];
-        rtLableInstance = contentLabel;
-    }
-    rtLableInstance.width = self.view.width - 101;
-    [rtLableInstance setText:content];
-    [rtLableInstance sizeToFit];
-    CGFloat sizeFitHeight = rtLableInstance.height;
-    sizeFitHeight = fmaxf(21, sizeFitHeight);
-    if (sizeFitHeight>21) {
-        height+=sizeFitHeight-21;
-    }
-    return height;
+    CGRect rectToFit = [tp.text boundingRectWithSize:CGSizeMake(self.view.width-109, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+    double height = rectToFit.size.height;
+    return 92-17+height;
 }
 
 

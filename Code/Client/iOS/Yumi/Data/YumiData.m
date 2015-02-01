@@ -16,7 +16,6 @@
 @end
 @implementation TopicReplyComment
 @end
-
 @implementation Chats
 @end
 @implementation Chat

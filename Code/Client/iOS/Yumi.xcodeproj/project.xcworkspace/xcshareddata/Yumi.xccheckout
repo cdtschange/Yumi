@@ -12,7 +12,7 @@
 	<dict>
 		<key>049F959FA229C8E5C1EBBB3FF419DC32022FCD90</key>
 		<string>https://github.com/cdtschange/ObjcKit.git</string>
-		<key>69654983562A6A4D99A83553E4C3CC812FC10A29</key>
+		<key>FD997A36183565ACEC520D3296BEB17D7813E7DE</key>
 		<string>https://github.com/cdtschange/Yumi.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -21,7 +21,7 @@
 	<dict>
 		<key>049F959FA229C8E5C1EBBB3FF419DC32022FCD90</key>
 		<string>../../../../../../ObjcKit</string>
-		<key>69654983562A6A4D99A83553E4C3CC812FC10A29</key>
+		<key>FD997A36183565ACEC520D3296BEB17D7813E7DE</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -29,7 +29,7 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>69654983562A6A4D99A83553E4C3CC812FC10A29</string>
+	<string>FD997A36183565ACEC520D3296BEB17D7813E7DE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>69654983562A6A4D99A83553E4C3CC812FC10A29</string>
+			<string>FD997A36183565ACEC520D3296BEB17D7813E7DE</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Yumi</string>
 		</dict>

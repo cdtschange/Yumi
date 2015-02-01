@@ -16,10 +16,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
 @interface ChatViewController ()<ChatCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgBg;
-@property (strong, nonatomic) YumiNetworkProvider *provider;
-@property (strong, nonatomic) YumiNetworkProvider *sendchatProvider;
-@property (strong, nonatomic) YumiNetworkProvider *uploadPicProvider;
-@property (strong, nonatomic) YumiNetworkProvider *translateProvider;
 @property (assign, nonatomic) BOOL cando;
 @property (assign, nonatomic) BOOL hasLoaded;
 @property (assign, nonatomic) int fakecnt;
@@ -43,20 +39,12 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
 }
 
 
--(WaterViewType)listType{
-    return WaterRefreshTypeOnlyRefresh;
-}
--(UIScrollView *)listView{
-    return self.tableView;
-}
--(void)initUIAndData{
-    [super initUIAndData];
-    self.tableView.height=self.view.height - 45;
-    
+-(void)reloadDataWithCache:(BOOL)cache{
     __weak ChatViewController *weakself = self;
-    self.provider = [YumiNetworkProvider new];
-    [self.provider setCompletionBlockWithSuccess:^(id responseObject) {
-        ChatData *data = responseObject;
+    ChatAPIData *data = [ChatAPIData initWithCid:self.cid];
+    data.cachePolicy = cache? NSURLRequestReturnCacheDataElseLoad:NSURLRequestUseProtocolCachePolicy;
+    NSURLSessionTask *task = [data requestWithSuccess:^(id responseObject) {
+        ChatAPIData *data = responseObject;
         if (weakself==nil) {
             return;
         }
@@ -86,7 +74,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         times = [timesarr componentsJoinedByString:@","];
         [AccountEntity shared].cids = cids;
         [AccountEntity shared].cidtimes = times;
-
+        
         
         [weakself dataArrayChanged:data.chats];
         if (data.chats&&data.chats.count>0) {
@@ -104,7 +92,19 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
             weakself.listFailureBlock(error);
         }
     }];
-    self.provider.statusBlock = self.listStatusBlock;
+    if (self.dataArray.count==0) {
+        [self setListNetworkStateOfTask:task];
+    }
+}
+-(WaterViewType)listType{
+    return WaterRefreshTypeOnlyRefresh;
+}
+-(UIScrollView *)listView{
+    return self.tableView;
+}
+-(void)initUIAndData{
+    [super initUIAndData];
+    self.tableView.height=self.view.height - 45;
     
     UIView * view = [[UIView alloc] init];
     self.tableView.tableFooterView = view;
@@ -118,9 +118,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
 }
 -(void)loadData{
     [super loadData];
-    if (self.dataArray.count>0) {
-        self.provider.statusBlock = nil;
-    }
     self.hasLoaded = YES;
     self.title = self.name;
     self.dataIndex = 0;
@@ -128,17 +125,14 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (self.tpic&&self.tpic.length>0) {
             [self.imgBg setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageBigURLWithHead:self.tpic]] placeholderImage:[UIImage imageNamed:@"view_chat_bg_default"]];
         }
-        [self.provider chatForCid:self.cid];
-        [self.provider requestData];
+        [self reloadDataWithCache:NO];
     }
 }
 
 -(void)scrollViewPulling:(BOOL)isRefresh{
     [super scrollViewPulling:isRefresh];
     if (self.cid&&self.cid.length>0) {
-        [self.provider chatForCid:self.cid];
-        [self.provider useCache:!isRefresh];
-        [self.provider requestData];
+        [self reloadDataWithCache:NO];
     }
 }
 -(void)initNavigationBar{
@@ -192,23 +186,23 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     if (message.messageType == ZBBubbleMessageFixedText) {
         self.fakecnt++;
         return;
-        __weak ChatViewController *weakself = self;
-        self.uploadPicProvider = [YumiNetworkProvider new];
-        [self.uploadPicProvider uploadPicForImage:message.photo];
-        [self.uploadPicProvider setCompletionBlockWithSuccess:^(id responseObject) {
-            weakself.sendchatProvider = [YumiNetworkProvider new];
-            weakself.sendchatProvider.statusBlock = nil;
-            [weakself.sendchatProvider setCompletionBlockWithSuccess:^(id responseObject) {
-            } failure:^(NSError *error) {
-                weakself.failureBlock(error);
-            }];
-            [weakself.sendchatProvider sendChatForTuid:weakself.tuid cid:weakself.cid words:text type:ChatTypeText];
-            [weakself.sendchatProvider requestData];
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        self.uploadPicProvider.statusBlock = self.statusBlock;
-        [self.uploadPicProvider requestData];
+//        __weak ChatViewController *weakself = self;
+//        self.uploadPicProvider = [YumiNetworkProvider new];
+//        [self.uploadPicProvider uploadPicForImage:message.photo];
+//        [self.uploadPicProvider setCompletionBlockWithSuccess:^(id responseObject) {
+//            weakself.sendchatProvider = [YumiNetworkProvider new];
+//            weakself.sendchatProvider.statusBlock = nil;
+//            [weakself.sendchatProvider setCompletionBlockWithSuccess:^(id responseObject) {
+//            } failure:^(NSError *error) {
+//                weakself.failureBlock(error);
+//            }];
+//            [weakself.sendchatProvider sendChatForTuid:weakself.tuid cid:weakself.cid words:text type:ChatTypeText];
+//            [weakself.sendchatProvider requestData];
+//        } failure:^(NSError *error) {
+//            weakself.failureBlock(error);
+//        }];
+//        self.uploadPicProvider.statusBlock = self.statusBlock;
+//        [self.uploadPicProvider requestData];
     }else if (message.messageType == ZBBubbleMessageVoice){
         self.fakecnt++;
         return;
@@ -216,15 +210,8 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         self.fakecnt++;
         return;
     }else{
-        __weak ChatViewController *weakself = self;
-        self.sendchatProvider = [YumiNetworkProvider new];
-        self.sendchatProvider.statusBlock = nil;
-        [self.sendchatProvider setCompletionBlockWithSuccess:^(id responseObject) {
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        [self.sendchatProvider sendChatForTuid:self.tuid cid:self.cid words:text type:ChatTypeText];
-        [self.sendchatProvider requestData];
+        [[SendChatAPIData initWithTuid:self.tuid cid:self.cid words:text type:ChatTypeText] requestWithSuccess:^(id responseObject) {
+        } failure:self.failureBlock];
     }
     
 }
@@ -260,7 +247,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
             cell.delegate = self;
         }
     }
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallURLWithHead:chat.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
+    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:chat.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
     
     [cell.viewWord setTranslatesAutoresizingMaskIntoConstraints:YES];
     [cell.lblWord setTranslatesAutoresizingMaskIntoConstraints:YES];
@@ -516,10 +503,8 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
 -(void)handleTranslateCell:(id)sender{
     if (self.selectedContent&&self.selectedContent.length>0) {
         __weak ChatViewController *weakself = self;
-        self.translateProvider = [YumiNetworkProvider new];
-        [self.translateProvider translateForText:self.selectedContent];
-        [self.translateProvider setCompletionBlockWithSuccess:^(id responseObject) {
-            TranslateData *data = responseObject;
+        NSURLSessionTask *task = [[TranslateAPIData initWithText:self.selectedContent] requestWithSuccess:^(id responseObject) {
+            TranslateAPIData *data = responseObject;
             if (data.result&&data.result.length>0) {
                 ZBMessage *msg = [ZBMessage new];
                 msg.text = weakself.selectedContent;
@@ -529,11 +514,8 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
             }else{
                 [weakself showInfoTip:@"翻译失败"];
             }
-        } failure:^(NSError *error) {
-            weakself.failureBlock(error);
-        }];
-        self.translateProvider.statusBlock = self.statusBlock;
-        [self.translateProvider requestData];
+        } failure:self.failureBlock];
+        [self setNetworkStateOfTask:task];
     }
 }
 -(void)handleReadCell:(id)sender{

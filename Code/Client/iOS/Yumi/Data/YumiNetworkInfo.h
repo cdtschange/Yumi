@@ -35,7 +35,7 @@ typedef enum ApiAddressType {
 + (NSString *)baseURL;
 + (NSString *)baseUCenterURL;
 + (NSString *)imageServerURLFormat;
-+ (NSString *)imageSmallURLWithHead:(NSString *)headURL;
++ (NSString *)imageSmallWithUrl:(NSString *)headURL;
 + (NSString *)imageMiddleURLWithHead:(NSString *)headURL;
 + (NSString *)imageBigURLWithHead:(NSString *)headURL;
 + (NSString *)imageOrigURLWithHead:(NSString *)headURL;
@@ -43,5 +43,11 @@ typedef enum ApiAddressType {
 #pragma mark - Signal Mode
 + (YumiNetworkInfo *)shared;
 + (void)releaseInstance;
+
+@end
+
+@interface NSString(ImageURL)
+
+- (NSString *)imageSmall;
 
 @end
