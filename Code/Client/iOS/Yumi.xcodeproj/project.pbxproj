@@ -323,7 +323,6 @@
 		FBEB83601A5BAB1F009208B0 /* TopicReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBEB835E1A5BAB1F009208B0 /* TopicReplyTableViewCell.xib */; };
 		FBEB83641A5BAE5B009208B0 /* TopicReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEB83621A5BAE5B009208B0 /* TopicReplyViewController.m */; };
 		FBEB83651A5BAE5B009208B0 /* TopicReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBEB83631A5BAE5B009208B0 /* TopicReplyViewController.xib */; };
-		FBF3C7E91A6767E300905379 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF3C7E81A6767E300905379 /* RTLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FBF3C8861A67A0AE00905379 /* MessageDisplayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF3C7ED1A67A0AE00905379 /* MessageDisplayDetailViewController.m */; };
 		FBF3C8871A67A0AE00905379 /* MessageDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF3C7EF1A67A0AE00905379 /* MessageDisplayViewController.m */; };
 		FBF3C8881A67A0AE00905379 /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF3C7F21A67A0AE00905379 /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -979,8 +978,6 @@
 		FBEB83611A5BAE5B009208B0 /* TopicReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicReplyViewController.h; sourceTree = "<group>"; };
 		FBEB83621A5BAE5B009208B0 /* TopicReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicReplyViewController.m; sourceTree = "<group>"; };
 		FBEB83631A5BAE5B009208B0 /* TopicReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicReplyViewController.xib; sourceTree = "<group>"; };
-		FBF3C7E71A6767E300905379 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
-		FBF3C7E81A6767E300905379 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		FBF3C7EC1A67A0AE00905379 /* MessageDisplayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDisplayDetailViewController.h; sourceTree = "<group>"; };
 		FBF3C7ED1A67A0AE00905379 /* MessageDisplayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDisplayDetailViewController.m; sourceTree = "<group>"; };
 		FBF3C7EE1A67A0AE00905379 /* MessageDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDisplayViewController.h; sourceTree = "<group>"; };
@@ -1654,8 +1651,6 @@
 				FBF3C7EA1A67A0AD00905379 /* RichKeyboard */,
 				FB045DB41A75F904005AA2E8 /* IconActionSheet.h */,
 				FB045DB51A75F904005AA2E8 /* IconActionSheet.m */,
-				FBF3C7E71A6767E300905379 /* RTLabel.h */,
-				FBF3C7E81A6767E300905379 /* RTLabel.m */,
 				FBD52AA01A66178C00ECB74F /* BadgeView.h */,
 				FBD52AA11A66178C00ECB74F /* BadgeView.m */,
 				FBD52AA21A66178C00ECB74F /* UILabel+SuffixView.h */,
@@ -3098,7 +3093,6 @@
 				FBDF91251A689E25002E9A4E /* CQMPathUtilities.m in Sources */,
 				3F68F5801A7DEDE200969142 /* YumiNetAPIData.m in Sources */,
 				FBDF90411A689E23002E9A4E /* RSExtendedCode39Generator.m in Sources */,
-				FBF3C7E91A6767E300905379 /* RTLabel.m in Sources */,
 				FBDF903C1A689E23002E9A4E /* RSCodeView.m in Sources */,
 				FBD52AA41A66178C00ECB74F /* BadgeView.m in Sources */,
 				FBDEBD691A510A360038B94F /* UserUtils.m in Sources */,

@@ -38,7 +38,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-
 -(void)reloadDataWithCache:(BOOL)cache{
     __weak ChatViewController *weakself = self;
     ChatAPIData *data = [ChatAPIData initWithCid:self.cid];
@@ -75,7 +74,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         [AccountEntity shared].cids = cids;
         [AccountEntity shared].cidtimes = times;
         
-        
         [weakself dataArrayChanged:data.chats];
         if (data.chats&&data.chats.count>0) {
             Chat *c = data.chats[data.chats.count-1];
@@ -87,7 +85,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (weakself.dataArray.count > 0)
             [weakself.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.dataArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     } failure:^(NSError *error) {
-        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
+        [weakself performSelector:@selector(reloadDataWithCache:) withObject:nil afterDelay:5];
         if (weakself.dataArray.count==0) {
             weakself.listFailureBlock(error);
         }
@@ -247,166 +245,163 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
             cell.delegate = self;
         }
     }
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:chat.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
+    cell.chat = chat;
     
-    [cell.viewWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.lblWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.imgBgWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.lblTranslate setTranslatesAutoresizingMaskIntoConstraints:YES];
-    [cell.imgCorrect setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [cell.viewWord setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [cell.lblWord setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [cell.imgBgWord setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [cell.lblTranslate setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [cell.imgCorrect setTranslatesAutoresizingMaskIntoConstraints:YES];
     
     
-    NSString *contentStr = chat.words;
-    if ([chat.type isEqualToString:@"voice"]) {
-        contentStr = @"语音";
-    }
-    cell.viewWord.width = self.view.width-80;
-    cell.lblWord.width = self.view.width - 125;
-    cell.lblWord.font = [UIFont systemFontOfSize:14.0];
-    [cell.lblWord setLineBreakMode:NSLineBreakByCharWrapping];
-    cell.lblWord.numberOfLines = 0;
-    [cell.lblWord setText:contentStr];
-    [cell.lblWord sizeToFit];
-    CGFloat sizeFitHeight = cell.lblWord.height;
-    sizeFitHeight = fmaxf(20, sizeFitHeight);
-    double height = 50;
-    height += sizeFitHeight;
-    cell.viewWord.height = height-24;
-    if (cell.lblWord.height<=20) {
-        static UILabel* lblInstance = nil;
-        if (!lblInstance) {
-            lblInstance = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
-            lblInstance.font = cell.lblWord.font;
-        }
-        lblInstance.text = contentStr;
-        [lblInstance sizeToFit];
-        if([cell isKindOfClass:[ChatTableViewCell class]]){
-            double width = lblInstance.width+45;
-            if (width<self.view.width - 80) {
-                cell.viewWord.width = width;
-                cell.lblWord.width = lblInstance.width;
-            }
-        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-            double width = lblInstance.width+45;
-            if (width<self.view.width - 80) {
-                double left = self.view.width - 70 - width;
-                cell.viewWord.left = left;
-                cell.viewWord.width = width;
-                cell.lblWord.width = lblInstance.width;
-            }
-        }
-    }else{
-        if([cell isKindOfClass:[ChatTableViewCell class]]){
-            cell.viewWord.left = 70;
-            cell.lblWord.left = 30;
-        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-            cell.viewWord.left = 10;
-            cell.lblWord.left = 15;
-        }
-    }
-    cell.imgBgWord.width = cell.viewWord.width;
-    cell.imgBgWord.height = cell.viewWord.height;
-    cell.viewWordBottom.top = cell.viewWord.top + cell.viewWord.height+5;
-    cell.viewWordBottom.height = 0;
-    if ([cell isKindOfClass:[ChatRightTableViewCell class]]) {
-        cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_Solid"];
-    }
-    if ([chat.type isEqualToString: @"text-m"]) {
-        cell.lblTranslate.hidden = YES;
-        cell.imgCorrect.hidden = NO;
-        cell.viewWordBottom.backgroundColor = COLOR_Default_LightGreen;
-        cell.viewWordBottom.layer.cornerRadius = 3;
-        cell.viewWordBottom.layer.borderColor = RGBCOLOR(103, 131, 217).CGColor;
-        cell.viewWordBottom.layer.borderWidth = 0.5;
-        cell.viewWordBottom.layer.masksToBounds = YES;
-        if (chat.photoImage) {
-            cell.imgCorrect.image = chat.photoImage;
-            if (chat.photoImage.size.width<self.view.width - 125) {
-                cell.viewWordBottom.height = chat.photoImage.size.height;
-                if([cell isKindOfClass:[ChatTableViewCell class]]){
-                    double width = chat.photoImage.size.width+40;
-                    if (width<self.view.width - 85) {
-                        cell.viewWordBottom.width = width;
-                        cell.imgCorrect.width = chat.photoImage.size.width;
-                        cell.imgCorrect.height = chat.photoImage.size.height;
-                    }
-                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-                    double width = chat.photoImage.size.width+40;
-                    if (width<self.view.width - 85) {
-                        double left = self.view.width - 75- width;
-                        cell.viewWordBottom.left = left;
-                        cell.viewWordBottom.width = width;
-                        cell.imgCorrect.width = chat.photoImage.size.width;
-                        cell.imgCorrect.height = chat.photoImage.size.height;
-                    }
-                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
-                }
-            }else{
-                if([cell isKindOfClass:[ChatTableViewCell class]]){
-                    cell.viewWordBottom.left = 75;
-                    cell.imgCorrect.left = 25;
-                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-                    cell.viewWordBottom.left = 10;
-                    cell.imgCorrect.left = 15;
-                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
-                }
-            }
-        }
-    }else if ([chat.type isEqualToString: @"text-t"]) {
-        if (chat.translate&&chat.translate.length>0) {
-            cell.lblTranslate.hidden = NO;
-            cell.imgCorrect.hidden = YES;
-            cell.viewWordBottom.backgroundColor = RGBCOLOR(32, 47, 70);
-            cell.viewWordBottom.layer.borderWidth = 0;
-            cell.viewWordBottom.layer.cornerRadius = 3;
-            cell.viewWordBottom.layer.masksToBounds = YES;
-            
-            cell.viewWordBottom.width = self.view.width - 85;
-            cell.lblTranslate.width = self.view.width - 125;
-            cell.lblTranslate.font = [UIFont systemFontOfSize:14.0];
-            [cell.lblTranslate setLineBreakMode:NSLineBreakByCharWrapping];
-            cell.lblTranslate.numberOfLines = 0;
-            [cell.lblTranslate setText:chat.translate];
-            [cell.lblTranslate sizeToFit];
-            CGFloat sizeFitHeight = cell.lblTranslate.height;
-            sizeFitHeight = fmaxf(20, sizeFitHeight);
-            cell.viewWordBottom.height = sizeFitHeight+10;
-            
-            if (cell.lblTranslate.height<=20) {
-                static UILabel* lblInstance2 = nil;
-                if (!lblInstance2) {
-                    lblInstance2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
-                    lblInstance2.font = cell.lblTranslate.font;
-                }
-                lblInstance2.text = contentStr;
-                [lblInstance2 sizeToFit];
-                if([cell isKindOfClass:[ChatTableViewCell class]]){
-                    double width = lblInstance2.width+40;
-                    if (width<self.view.width - 85) {
-                        cell.viewWordBottom.width = width;
-                        cell.lblTranslate.width = lblInstance2.width;
-                    }
-                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-                    double width = lblInstance2.width+40;
-                    if (width<self.view.width - 85) {
-                        double left = self.view.width - 75- width;
-                        cell.viewWordBottom.left = left;
-                        cell.viewWordBottom.width = width;
-                        cell.lblTranslate.width = lblInstance2.width;
-                    }
-                }
-            }else{
-                if([cell isKindOfClass:[ChatTableViewCell class]]){
-                    cell.viewWordBottom.left = 75;
-                    cell.lblTranslate.left = 25;
-                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-                    cell.viewWordBottom.left = 10;
-                    cell.lblTranslate.left = 15;
-                }
-            }
-        }
-    }
+//    CGRect rectToFit = [contentStr boundingRectWithSize:CGSizeMake(self.view.width-98, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+//    cell.lblWord.size = rectToFit.size;
+    
+//    cell.viewWord.width = self.view.width-80;
+//    cell.lblWord.width = self.view.width - 125;
+//    cell.lblWord.font = [UIFont systemFontOfSize:14.0];
+//    [cell.lblWord setLineBreakMode:NSLineBreakByCharWrapping];
+//    cell.lblWord.numberOfLines = 0;
+//    [cell.lblWord sizeToFit];
+//    CGFloat sizeFitHeight = cell.lblWord.height;
+//    sizeFitHeight = fmaxf(20, sizeFitHeight);
+//    double height = 50;
+//    height += sizeFitHeight;
+//    cell.viewWord.height = height-24;
+//    if (cell.lblWord.height<=20) {
+//        static UILabel* lblInstance = nil;
+//        if (!lblInstance) {
+//            lblInstance = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
+//            lblInstance.font = cell.lblWord.font;
+//        }
+//        lblInstance.text = contentStr;
+//        [lblInstance sizeToFit];
+//        if([cell isKindOfClass:[ChatTableViewCell class]]){
+//            double width = lblInstance.width+45;
+//            if (width<self.view.width - 80) {
+//                cell.viewWord.width = width;
+//                cell.lblWord.width = lblInstance.width;
+//            }
+//        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//            double width = lblInstance.width+45;
+//            if (width<self.view.width - 80) {
+//                double left = self.view.width - 70 - width;
+//                cell.viewWord.left = left;
+//                cell.viewWord.width = width;
+//                cell.lblWord.width = lblInstance.width;
+//            }
+//        }
+//    }else{
+//        if([cell isKindOfClass:[ChatTableViewCell class]]){
+//            cell.viewWord.left = 70;
+//            cell.lblWord.left = 30;
+//        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//            cell.viewWord.left = 10;
+//            cell.lblWord.left = 15;
+//        }
+//    }
+//    cell.lblTranslate.text = @"";
+//    cell.imgBgWord.width = cell.viewWord.width;
+//    cell.imgBgWord.height = cell.viewWord.height;
+//    cell.viewWordBottom.top = cell.viewWord.top + cell.viewWord.height+5;
+//    if ([cell isKindOfClass:[ChatRightTableViewCell class]]) {
+//        cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_Solid"];
+//    }
+//    if ([chat.type isEqualToString: @"text-m"]) {
+//        cell.lblTranslate.hidden = YES;
+//        cell.imgCorrect.hidden = NO;
+//        cell.viewWordBottom.backgroundColor = COLOR_Default_LightGreen;
+//        cell.viewWordBottom.layer.cornerRadius = 3;
+//        cell.viewWordBottom.layer.borderColor = RGBCOLOR(103, 131, 217).CGColor;
+//        cell.viewWordBottom.layer.borderWidth = 0.5;
+//        cell.viewWordBottom.layer.masksToBounds = YES;
+//        if (chat.photoImage) {
+//            cell.imgCorrect.image = chat.photoImage;
+//            if (chat.photoImage.size.width<self.view.width - 125) {
+//                cell.viewWordBottom.height = chat.photoImage.size.height;
+//                if([cell isKindOfClass:[ChatTableViewCell class]]){
+//                    double width = chat.photoImage.size.width+40;
+//                    if (width<self.view.width - 85) {
+//                        cell.viewWordBottom.width = width;
+//                        cell.imgCorrect.width = chat.photoImage.size.width;
+//                        cell.imgCorrect.height = chat.photoImage.size.height;
+//                    }
+//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//                    double width = chat.photoImage.size.width+40;
+//                    if (width<self.view.width - 85) {
+//                        double left = self.view.width - 75- width;
+//                        cell.viewWordBottom.left = left;
+//                        cell.viewWordBottom.width = width;
+//                        cell.imgCorrect.width = chat.photoImage.size.width;
+//                        cell.imgCorrect.height = chat.photoImage.size.height;
+//                    }
+//                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
+//                }
+//            }else{
+//                if([cell isKindOfClass:[ChatTableViewCell class]]){
+//                    cell.viewWordBottom.left = 75;
+//                    cell.imgCorrect.left = 25;
+//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//                    cell.viewWordBottom.left = 10;
+//                    cell.imgCorrect.left = 15;
+//                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
+//                }
+//            }
+//        }
+//    }else if ([chat.type isEqualToString: @"text-t"]) {
+//        if (chat.translate&&chat.translate.length>0) {
+//            cell.lblTranslate.hidden = NO;
+//            cell.imgCorrect.hidden = YES;
+//            cell.viewWordBottom.backgroundColor = RGBCOLOR(32, 47, 70);
+//            cell.viewWordBottom.layer.borderWidth = 0;
+//            cell.viewWordBottom.layer.cornerRadius = 3;
+//            cell.viewWordBottom.layer.masksToBounds = YES;
+//            
+//            cell.viewWordBottom.width = self.view.width - 85;
+//            cell.lblTranslate.width = self.view.width - 125;
+//            cell.lblTranslate.font = [UIFont systemFontOfSize:14.0];
+//            [cell.lblTranslate setLineBreakMode:NSLineBreakByCharWrapping];
+//            cell.lblTranslate.numberOfLines = 0;
+//            [cell.lblTranslate setText:chat.translate];
+//            [cell.lblTranslate sizeToFit];
+//            CGFloat sizeFitHeight = cell.lblTranslate.height;
+//            sizeFitHeight = fmaxf(20, sizeFitHeight);
+//            cell.viewWordBottom.height = sizeFitHeight+10;
+//            
+//            if (cell.lblTranslate.height<=20) {
+//                static UILabel* lblInstance2 = nil;
+//                if (!lblInstance2) {
+//                    lblInstance2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
+//                    lblInstance2.font = cell.lblTranslate.font;
+//                }
+//                lblInstance2.text = contentStr;
+//                [lblInstance2 sizeToFit];
+//                if([cell isKindOfClass:[ChatTableViewCell class]]){
+//                    double width = lblInstance2.width+40;
+//                    if (width<self.view.width - 85) {
+//                        cell.viewWordBottom.width = width;
+//                        cell.lblTranslate.width = lblInstance2.width;
+//                    }
+//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//                    double width = lblInstance2.width+40;
+//                    if (width<self.view.width - 85) {
+//                        double left = self.view.width - 75- width;
+//                        cell.viewWordBottom.left = left;
+//                        cell.viewWordBottom.width = width;
+//                        cell.lblTranslate.width = lblInstance2.width;
+//                    }
+//                }
+//            }else{
+//                if([cell isKindOfClass:[ChatTableViewCell class]]){
+//                    cell.viewWordBottom.left = 75;
+//                    cell.lblTranslate.left = 25;
+//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
+//                    cell.viewWordBottom.left = 10;
+//                    cell.lblTranslate.left = 15;
+//                }
+//            }
+//        }
+//    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -417,56 +412,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
 }
 - (CGFloat)heightForCellWithIndexPath:(NSIndexPath *)indexPath {
     Chat *chat = self.dataArray[indexPath.row];
-    double height = 50;
-    NSString *content = chat.words;
-    if ([chat.type isEqualToString:@"voice"]) {
-        content = @"语音";
-    }
-    static UILabel* rtLableInstance = nil;
-    if (!rtLableInstance) {
-        ChatBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kChatTableViewCellIdentify];
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:kChatTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
-        }
-        UILabel *contentLabel = cell.lblWord;
-        contentLabel.font = [UIFont systemFontOfSize:14.0];
-        [cell.lblWord setLineBreakMode:NSLineBreakByCharWrapping];
-        cell.lblWord.numberOfLines = 0;
-        rtLableInstance = contentLabel;
-    }
-    rtLableInstance.width = self.view.width - 125;
-    [rtLableInstance setText:content];
-    [rtLableInstance sizeToFit];
-    CGFloat sizeFitHeight = rtLableInstance.height;
-    sizeFitHeight = fmaxf(20, sizeFitHeight);
-    height += sizeFitHeight;
-    
-    if ([chat.type isEqualToString: @"text-m"]) {
-        if (chat.photoImage) {
-            height += chat.photoImage.size.height;
-        }
-    }else if([chat.type isEqualToString: @"text-t"]){
-        static UILabel* rtLableInstance2 = nil;
-        if (!rtLableInstance2) {
-            ChatBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kChatTableViewCellIdentify];
-            if (cell == nil) {
-                cell = [[[NSBundle mainBundle] loadNibNamed:kChatTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
-            }
-            UILabel *contentLabel = cell.lblTranslate;
-            contentLabel.font = [UIFont systemFontOfSize:14.0];
-            [contentLabel setLineBreakMode:NSLineBreakByCharWrapping];
-            contentLabel.numberOfLines = 0;
-            rtLableInstance2 = contentLabel;
-        }
-        content = chat.translate;
-        rtLableInstance2.width = self.view.width - 125;
-        [rtLableInstance2 setText:content];
-        [rtLableInstance2 sizeToFit];
-        CGFloat sizeFitHeight = rtLableInstance2.height;
-        sizeFitHeight = fmaxf(20, sizeFitHeight);
-        height += sizeFitHeight + 10+4;
-    }
-    return height;
+    return [ChatBaseTableViewCell heightForCellWithChat:chat width:self.view.width];
 }
 
 -(void)chatCellLongPress:(ChatBaseTableViewCell *)cell content:(NSString *)content{
@@ -483,10 +429,10 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     UIMenuController *menu = [UIMenuController sharedMenuController];
     [menu setMenuItems:[NSArray arrayWithObjects:it1, it2, it3, it4, it5, nil]];
     CGRect frame = cell.frame;
-    frame.origin.y+=cell.viewWord.frame.origin.y;
-    frame.origin.x+=cell.viewWord.frame.origin.x;
-    frame.size.width = cell.viewWord.frame.size.width;
-    frame.size.height = cell.viewWord.frame.size.height;
+    frame.origin.y+=cell.imgBgWord.frame.origin.y;
+    frame.origin.x+=cell.imgBgWord.frame.origin.x;
+    frame.size.width = cell.imgBgWord.frame.size.width;
+    frame.size.height = cell.imgBgWord.frame.size.height;
     [menu setTargetRect:frame inView:self.tableView];
     [menu setMenuVisible:YES animated:YES];
     

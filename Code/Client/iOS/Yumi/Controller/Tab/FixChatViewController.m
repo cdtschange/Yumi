@@ -7,7 +7,6 @@
 //
 
 #import "FixChatViewController.h"
-#import "RTLabel.h"
 
 @interface FixChatViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgNew;

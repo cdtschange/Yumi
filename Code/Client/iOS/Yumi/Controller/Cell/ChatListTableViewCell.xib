@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYZ-9M-Gew">
-                        <rect key="frame" x="209" y="10" width="98" height="21"/>
+                        <rect key="frame" x="281" y="12" width="26" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Byx-v1-ObV"/>
                             <constraint firstAttribute="width" constant="98" id="Jwd-j4-0f4"/>
@@ -31,9 +31,15 @@
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Byx-v1-ObV"/>
+                                <exclude reference="Jwd-j4-0f4"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-9b-O7t">
-                        <rect key="frame" x="77" y="11" width="167" height="21"/>
+                        <rect key="frame" x="77" y="11" width="167" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="167" id="j1R-I9-bZg"/>
                             <constraint firstAttribute="height" constant="21" id="l4A-n6-C94"/>
@@ -44,6 +50,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="j1R-I9-bZg"/>
+                                <exclude reference="l4A-n6-C94"/>
                             </mask>
                         </variation>
                     </label>
@@ -62,8 +69,8 @@
                     <constraint firstItem="AT2-ac-j2E" firstAttribute="leading" secondItem="YLt-b6-eeW" secondAttribute="trailing" constant="17" id="Tsc-Er-9Fe"/>
                     <constraint firstItem="CWC-9b-O7t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="Tzb-nB-cwI"/>
                     <constraint firstItem="YLt-b6-eeW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="WzE-Wc-PT0"/>
-                    <constraint firstItem="AT2-ac-j2E" firstAttribute="top" secondItem="CWC-9b-O7t" secondAttribute="bottom" constant="3" id="dXV-sW-3R5"/>
-                    <constraint firstItem="nYZ-9M-Gew" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="eaR-Sp-w9k"/>
+                    <constraint firstItem="AT2-ac-j2E" firstAttribute="top" secondItem="CWC-9b-O7t" secondAttribute="bottom" constant="6" id="dXV-sW-3R5"/>
+                    <constraint firstItem="nYZ-9M-Gew" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="eaR-Sp-w9k"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nYZ-9M-Gew" secondAttribute="trailing" constant="5" id="lOK-b8-99Z"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CWC-9b-O7t" secondAttribute="trailing" constant="68" id="tH2-v2-9bk"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AT2-ac-j2E" secondAttribute="trailing" constant="5" id="v8M-qE-faM"/>

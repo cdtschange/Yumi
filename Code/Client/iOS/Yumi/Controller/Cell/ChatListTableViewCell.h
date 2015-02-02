@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblContent;
 @property (strong, nonatomic) BadgeView *badgeView;
 
+@property (nonatomic, strong) Chats *chats;
+
 @end

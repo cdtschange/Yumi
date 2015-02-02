@@ -7,6 +7,7 @@
 //
 
 #import "ChatListTableViewCell.h"
+#import "DateUtils.h"
 
 @implementation ChatListTableViewCell
 
@@ -23,6 +24,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setChats:(Chats *)chats{
+    _chats = chats;
+    self.badgeView.hidden = chats.badge==0;
+    self.badgeView.badgeString = [NSString stringWithFormat:@"%d", chats.badge];
+    self.lblTitle.text = chats.title;
+    self.lblContent.text = chats.words;
+    [self.imgHead setImageWithURL:[NSURL URLWithString:[chats.pic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
+    self.lblTime.text = [DateUtils timeConvertToShort:chats.time];
+    [self setNeedsLayout];
 }
 
 @end

@@ -62,7 +62,6 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
             [weakself.tableView reloadData];
         } failure:nil];
         [weakself.tableView reloadData];
-        [weakself setNetworkStateOfTask:task];
     } failure:weakself.listFailureBlock];
     [self setListNetworkStateOfTask:task];
 }
@@ -164,12 +163,7 @@ static NSString *kChatListTableViewCellIdentify = @"ChatListTableViewCell";
         cell = [[[NSBundle mainBundle] loadNibNamed:kChatListTableViewCellIdentify owner:self options:nil] objectAtIndex:0];
     }
     Chats *chats = self.dataArray[indexPath.row];
-    cell.badgeView.hidden = chats.badge==0;
-    cell.badgeView.badgeString = [NSString stringWithFormat:@"%d", chats.badge];
-    cell.lblTitle.text = chats.title;
-    cell.lblContent.text = chats.words;
-    [cell.imgHead setImageWithURL:[NSURL URLWithString:[YumiNetworkInfo imageSmallWithUrl:chats.pic]] placeholderImage:[UIImage imageNamed:IMG_HEAD_DEFAULT]];
-    cell.lblTime.text = [DateUtils timeConvertToShort:chats.time];
+    cell.chats = chats;
 
     return cell;
 }

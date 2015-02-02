@@ -23,9 +23,9 @@
     self.imgHead.layer.cornerRadius = 5;
     self.imgHead.layer.masksToBounds = YES;
     
-    [self.viewWord addGestureRecognizer: [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longTap:)]];
+    [self.imgBgWord addGestureRecognizer: [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longTap:)]];
     
-    [self.viewWord addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapPress:)]];
+    [self.imgBgWord addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapPress:)]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -68,6 +68,44 @@
     self.selectedContent = @"";
     self.selectedCell=nil;
     [self resignFirstResponder];
+}
+
+-(void)setChat:(Chat *)chat{
+    _chat = chat;
+    [self.imgHead setImageWithURL:[NSURL URLWithString:[chat.pic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
+    NSString *contentStr = chat.words;
+    if ([chat.type isEqualToString:@"voice"]) {
+        contentStr = @"语音";
+    }
+    [self.lblWord setText:contentStr];
+    if ([chat.type isEqualToString: @"text-t"]) {
+        [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:NO];
+        self.lblTranslate.text = chat.translate;
+    }else{
+        self.viewWordBottom.height = 0;
+        [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:YES];
+    }
+    [self setNeedsLayout];
+}
++(CGFloat)heightForCellWithChat:(Chat *)chat width:(double)width{
+    NSString *content = chat.words;
+    if ([chat.type isEqualToString:@"voice"]) {
+        content = @"语音";
+    }
+    CGRect rectToFit = [content boundingRectWithSize:CGSizeMake(width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+    double height = rectToFit.size.height;
+    height+=50;
+    if ([chat.type isEqualToString: @"text-m"]) {
+        if (chat.photoImage) {
+            height += chat.photoImage.size.height;
+            height+=12;
+        }
+    }else if([chat.type isEqualToString: @"text-t"]){
+        rectToFit = [chat.translate boundingRectWithSize:CGSizeMake(width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        height += rectToFit.size.height;
+        height+=12;
+    }
+    return height;
 }
 @end
 @implementation ChatTableViewCell

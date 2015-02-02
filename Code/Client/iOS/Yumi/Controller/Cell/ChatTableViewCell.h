@@ -27,7 +27,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgCorrect;
 @property (weak, nonatomic) IBOutlet UILabel *lblTranslate;
 @property (weak, nonatomic) IBOutlet UIImageView *imgBgWord;
+@property (weak, nonatomic) IBOutlet UIView *viewWordBottomBg;
 
+@property (nonatomic, strong) Chat *chat;
+
++ (CGFloat)heightForCellWithChat:(Chat *)chat width:(double)width;
 @end
 
 @interface ChatTableViewCell : ChatBaseTableViewCell
