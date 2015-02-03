@@ -47,7 +47,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (weakself==nil) {
             return;
         }
-        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
+//        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
         if (weakself.dataArray.count==data.chats.count+weakself.fakecnt) {
             return;
         }
@@ -85,6 +85,9 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (weakself.dataArray.count > 0)
             [weakself.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.dataArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     } failure:^(NSError *error) {
+        if (weakself==nil) {
+            return;
+        }
         [weakself performSelector:@selector(reloadDataWithCache:) withObject:nil afterDelay:5];
         if (weakself.dataArray.count==0) {
             weakself.listFailureBlock(error);

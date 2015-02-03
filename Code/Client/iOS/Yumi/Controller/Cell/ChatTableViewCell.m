@@ -78,12 +78,21 @@
         contentStr = @"语音";
     }
     [self.lblWord setText:contentStr];
+    [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:YES];
     if ([chat.type isEqualToString: @"text-t"]) {
-        [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:NO];
+        CGRect rectToFit = [contentStr boundingRectWithSize:CGSizeMake(self.width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        CGRect rectToFit2 = [chat.translate boundingRectWithSize:CGSizeMake(self.width-100, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        double height = rectToFit.size.height;
+        double height2 = rectToFit2.size.height;
+        self.viewWordBottom.top = height+33;
+        self.viewWordBottom.height = height2+23;
         self.lblTranslate.text = chat.translate;
+        self.viewWordBottomBg.backgroundColor = RGBCOLOR(32, 47, 70);
+        self.viewWordBottomBg.layer.borderWidth = 0;
+        self.viewWordBottomBg.layer.cornerRadius = 3;
+        self.viewWordBottomBg.layer.masksToBounds = YES;
     }else{
         self.viewWordBottom.height = 0;
-        [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:YES];
     }
     [self setNeedsLayout];
 }
@@ -101,9 +110,9 @@
             height+=12;
         }
     }else if([chat.type isEqualToString: @"text-t"]){
-        rectToFit = [chat.translate boundingRectWithSize:CGSizeMake(width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        rectToFit = [chat.translate boundingRectWithSize:CGSizeMake(width-100, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
         height += rectToFit.size.height;
-        height+=12;
+        height+=20;
     }
     return height;
 }
