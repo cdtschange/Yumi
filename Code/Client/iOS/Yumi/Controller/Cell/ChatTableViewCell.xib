@@ -41,7 +41,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-IT-KDa">
                                 <rect key="frame" x="8" y="2" width="54" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -128,10 +128,10 @@
                         <rect key="frame" x="10" y="70" width="242" height="40"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LKP-7F-8fW">
-                                <rect key="frame" x="190" y="0.0" width="44" height="40"/>
+                                <rect key="frame" x="180" y="5" width="44" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ejz-iF-ePd"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ejz-iF-ePd"/>
                                     <constraint firstAttribute="width" constant="44" id="wcE-Ld-nxz"/>
                                 </constraints>
                             </imageView>
@@ -149,7 +149,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LKP-7F-8fW" firstAttribute="bottom" secondItem="efY-As-0zM" secondAttribute="bottom" constant="10" id="7uT-7p-lT4"/>
-                            <constraint firstItem="LKP-7F-8fW" firstAttribute="top" secondItem="Mau-H8-J8x" secondAttribute="top" id="AWq-ru-EXP"/>
+                            <constraint firstItem="LKP-7F-8fW" firstAttribute="top" secondItem="Mau-H8-J8x" secondAttribute="top" constant="5" id="AWq-ru-EXP"/>
                             <constraint firstItem="efY-As-0zM" firstAttribute="leading" secondItem="dbv-FS-qyy" secondAttribute="leading" constant="16" id="Cmj-UF-85a"/>
                             <constraint firstItem="LKP-7F-8fW" firstAttribute="leading" secondItem="efY-As-0zM" secondAttribute="leading" constant="-8" id="KJi-hg-Ws0"/>
                             <constraint firstItem="dbv-FS-qyy" firstAttribute="top" secondItem="Mau-H8-J8x" secondAttribute="top" constant="2" id="bbg-RP-0LU"/>
@@ -157,7 +157,7 @@
                             <constraint firstItem="efY-As-0zM" firstAttribute="top" secondItem="Mau-H8-J8x" secondAttribute="top" constant="13" id="fcl-jT-UNj"/>
                             <constraint firstItem="efY-As-0zM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mau-H8-J8x" secondAttribute="leading" constant="8" id="nKd-ry-RmV"/>
                             <constraint firstItem="efY-As-0zM" firstAttribute="bottom" secondItem="dbv-FS-qyy" secondAttribute="bottom" constant="-12" id="sbZ-ab-ILn"/>
-                            <constraint firstAttribute="trailing" secondItem="LKP-7F-8fW" secondAttribute="trailing" constant="8" id="vSm-ab-5a7"/>
+                            <constraint firstAttribute="trailing" secondItem="LKP-7F-8fW" secondAttribute="trailing" constant="18" id="vSm-ab-5a7"/>
                             <constraint firstAttribute="trailing" secondItem="dbv-FS-qyy" secondAttribute="trailing" constant="4" id="zv2-dZ-aWA"/>
                         </constraints>
                         <variation key="default">

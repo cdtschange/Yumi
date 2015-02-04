@@ -79,6 +79,10 @@
     }
     [self.lblWord setText:contentStr];
     [self.viewWordBottom setTranslatesAutoresizingMaskIntoConstraints:YES];
+    if ([self isKindOfClass:[ChatRightTableViewCell class]]) {
+        self.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_Solid"];
+    }
+    self.lblTranslate.text = @"";
     if ([chat.type isEqualToString: @"text-t"]) {
         CGRect rectToFit = [contentStr boundingRectWithSize:CGSizeMake(self.width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
         CGRect rectToFit2 = [chat.translate boundingRectWithSize:CGSizeMake(self.width-100, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
@@ -91,6 +95,29 @@
         self.viewWordBottomBg.layer.borderWidth = 0;
         self.viewWordBottomBg.layer.cornerRadius = 3;
         self.viewWordBottomBg.layer.masksToBounds = YES;
+    }else if ([chat.type isEqualToString: @"text-m"]) {
+        if ([self isKindOfClass:[ChatRightTableViewCell class]]) {
+            self.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
+        }
+        [self.imgCorrect setTranslatesAutoresizingMaskIntoConstraints:YES];
+        if (!chat.photoImage) {
+            self.viewWordBottom.height = 0;
+        }else{
+            CGRect rectToFit = [contentStr boundingRectWithSize:CGSizeMake(self.width-113, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+            self.imgCorrect.image = chat.photoImage;
+            self.imgCorrect.size = chat.photoImage.size;
+            self.imgCorrect.left = self.viewWordBottom.width - self.imgCorrect.width - 3;
+            double height = rectToFit.size.height;
+            double height2 = chat.photoImage.size.height;
+            self.viewWordBottom.top = height+33;
+            self.viewWordBottom.height = height2+23;
+            self.lblTranslate.text = chat.translate;
+//            self.viewWordBottom.backgroundColor = COLOR_Default_LightGreen;
+            self.imgCorrect.layer.cornerRadius = 3;
+            self.imgCorrect.layer.borderColor = RGBCOLOR(103, 131, 217).CGColor;
+            self.imgCorrect.layer.borderWidth = 0.5;
+            self.imgCorrect.layer.masksToBounds = YES;
+        }
     }else{
         self.viewWordBottom.height = 0;
     }

@@ -35,6 +35,10 @@
     self.txvNew.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.txvNew.layer.borderWidth = 0.5;
     self.txvNew.layer.masksToBounds = YES;
+    self.imgFake.layer.cornerRadius = 3;
+    self.imgFake.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.imgFake.layer.borderWidth = 0.5;
+    self.imgFake.layer.masksToBounds = YES;
     [self loadData];
 }
 -(void)loadData{
@@ -55,9 +59,12 @@
     UIImage *image = [self.txvNew screenshot];
     [self.txvNew setTranslatesAutoresizingMaskIntoConstraints:YES];
     [self.imgNew setTranslatesAutoresizingMaskIntoConstraints:YES];
+    [self.imgFake setTranslatesAutoresizingMaskIntoConstraints:YES];
     self.imgFake.image = image;
     self.imgFake.hidden = NO;
-    self.txvNew.width = 195;
+    CGRect frame = self.txvNew.frame;
+    self.txvNew.width = self.view.width - 80;
+    self.txvNew.left = self.view.width/2 - self.txvNew.width/2;
     self.txvNew.layer.borderWidth = 0;
     self.txvNew.layer.cornerRadius = 0;
     self.txvNew.layer.borderColor = [UIColor clearColor].CGColor;
@@ -67,6 +74,12 @@
     self.imgNew.width = self.txvNew.width;
     self.imgNew.height = self.txvNew.height;
     self.imgNew.image = image;
+    self.txvNew.frame = frame;
+    self.imgFake.hidden = YES;
+    self.txvNew.layer.cornerRadius = 3;
+    self.txvNew.layer.borderWidth = 0.5;
+    self.txvNew.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.txvNew.backgroundColor = [UIColor whiteColor];
     [self routeBack];
     if (self.block) {
         self.block(YES,self.imgNew.image);

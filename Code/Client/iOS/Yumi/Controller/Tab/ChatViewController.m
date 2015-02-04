@@ -468,7 +468,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     }
 }
 -(void)handleReadCell:(id)sender{
-    [self showInfoTip:@"群聊功能暂未开放，敬请期待"];
+    [self showInfoTip:@"朗读功能暂未开放，敬请期待"];
 }
 -(void)handleBookCell:(id)sender{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:[AccountEntity shared].myNewWords];

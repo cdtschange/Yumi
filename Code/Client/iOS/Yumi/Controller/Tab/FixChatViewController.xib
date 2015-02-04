@@ -46,6 +46,7 @@
                         </textView>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tS2-pm-9qC">
                             <rect key="frame" x="29" y="25" width="263" height="170"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </imageView>
                     </subviews>
                     <constraints>
@@ -55,6 +56,9 @@
                         <constraint firstItem="O5W-bm-wQh" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" constant="29" id="8lW-jB-p5D"/>
                         <constraint firstItem="gyp-Xu-2Ue" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="36" id="DVy-Yq-qpk"/>
                         <constraint firstAttribute="trailing" secondItem="VuU-m3-FnN" secondAttribute="trailing" id="GRd-5a-TMV"/>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="leading" secondItem="O5W-bm-wQh" secondAttribute="leading" id="Gtw-DI-aYu"/>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="trailing" secondItem="O5W-bm-wQh" secondAttribute="trailing" id="KAm-8b-j1Y"/>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="top" secondItem="O5W-bm-wQh" secondAttribute="top" id="Ow2-UV-VG6"/>
                         <constraint firstItem="gyp-Xu-2Ue" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" constant="63" id="Pi4-8v-0mH"/>
                         <constraint firstAttribute="centerX" secondItem="VuU-m3-FnN" secondAttribute="centerX" id="RWX-86-ami"/>
                         <constraint firstAttribute="trailing" secondItem="O5W-bm-wQh" secondAttribute="trailing" constant="28" id="S49-Ku-6Iz"/>
@@ -64,6 +68,7 @@
                         <constraint firstItem="O5W-bm-wQh" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" constant="25" id="dEI-Jc-mAN"/>
                         <constraint firstAttribute="centerY" secondItem="VuU-m3-FnN" secondAttribute="centerY" id="ez7-bj-rcB"/>
                         <constraint firstItem="VuU-m3-FnN" firstAttribute="leading" secondItem="lZX-Za-zfR" secondAttribute="leading" id="gOs-TU-lwZ"/>
+                        <constraint firstItem="tS2-pm-9qC" firstAttribute="bottom" secondItem="O5W-bm-wQh" secondAttribute="bottom" id="gxG-Oc-JQA"/>
                         <constraint firstItem="VuU-m3-FnN" firstAttribute="top" secondItem="lZX-Za-zfR" secondAttribute="top" id="jA5-P4-Wyi"/>
                         <constraint firstAttribute="trailing" secondItem="gyp-Xu-2Ue" secondAttribute="trailing" constant="62" id="jtY-MM-7nF"/>
                         <constraint firstAttribute="bottom" secondItem="VuU-m3-FnN" secondAttribute="bottom" id="lox-Q7-Rdl"/>
@@ -71,6 +76,14 @@
                         <constraint firstAttribute="trailing" secondItem="tS2-pm-9qC" secondAttribute="trailing" constant="28" id="ufL-yY-hke"/>
                         <constraint firstAttribute="bottom" secondItem="tS2-pm-9qC" secondAttribute="bottom" constant="309" id="zOi-ZT-ZtW"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5SJ-Hv-gyp"/>
+                            <exclude reference="Smx-TV-auA"/>
+                            <exclude reference="ufL-yY-hke"/>
+                            <exclude reference="zOi-ZT-ZtW"/>
+                        </mask>
+                    </variation>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
