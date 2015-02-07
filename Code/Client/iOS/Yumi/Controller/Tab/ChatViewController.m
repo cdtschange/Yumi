@@ -10,6 +10,7 @@
 #import "ChatTableViewCell.h"
 #import "FixChatViewController.h"
 #import "AudioHelper.h"
+#import "Speecher.h"
 
 static NSString *kChatTableViewCellIdentify = @"ChatTableViewCell";
 static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
@@ -47,7 +48,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (weakself==nil) {
             return;
         }
-//        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
+        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
         if (weakself.dataArray.count==data.chats.count+weakself.fakecnt) {
             return;
         }
@@ -88,7 +89,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         if (weakself==nil) {
             return;
         }
-        [weakself performSelector:@selector(reloadDataWithCache:) withObject:nil afterDelay:5];
+        [weakself performSelector:@selector(loadData) withObject:nil afterDelay:5];
         if (weakself.dataArray.count==0) {
             weakself.listFailureBlock(error);
         }
@@ -249,162 +250,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
         }
     }
     cell.chat = chat;
-    
-//    [cell.viewWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-//    [cell.lblWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-//    [cell.imgBgWord setTranslatesAutoresizingMaskIntoConstraints:YES];
-//    [cell.lblTranslate setTranslatesAutoresizingMaskIntoConstraints:YES];
-//    [cell.imgCorrect setTranslatesAutoresizingMaskIntoConstraints:YES];
-    
-    
-//    CGRect rectToFit = [contentStr boundingRectWithSize:CGSizeMake(self.view.width-98, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
-//    cell.lblWord.size = rectToFit.size;
-    
-//    cell.viewWord.width = self.view.width-80;
-//    cell.lblWord.width = self.view.width - 125;
-//    cell.lblWord.font = [UIFont systemFontOfSize:14.0];
-//    [cell.lblWord setLineBreakMode:NSLineBreakByCharWrapping];
-//    cell.lblWord.numberOfLines = 0;
-//    [cell.lblWord sizeToFit];
-//    CGFloat sizeFitHeight = cell.lblWord.height;
-//    sizeFitHeight = fmaxf(20, sizeFitHeight);
-//    double height = 50;
-//    height += sizeFitHeight;
-//    cell.viewWord.height = height-24;
-//    if (cell.lblWord.height<=20) {
-//        static UILabel* lblInstance = nil;
-//        if (!lblInstance) {
-//            lblInstance = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
-//            lblInstance.font = cell.lblWord.font;
-//        }
-//        lblInstance.text = contentStr;
-//        [lblInstance sizeToFit];
-//        if([cell isKindOfClass:[ChatTableViewCell class]]){
-//            double width = lblInstance.width+45;
-//            if (width<self.view.width - 80) {
-//                cell.viewWord.width = width;
-//                cell.lblWord.width = lblInstance.width;
-//            }
-//        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//            double width = lblInstance.width+45;
-//            if (width<self.view.width - 80) {
-//                double left = self.view.width - 70 - width;
-//                cell.viewWord.left = left;
-//                cell.viewWord.width = width;
-//                cell.lblWord.width = lblInstance.width;
-//            }
-//        }
-//    }else{
-//        if([cell isKindOfClass:[ChatTableViewCell class]]){
-//            cell.viewWord.left = 70;
-//            cell.lblWord.left = 30;
-//        }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//            cell.viewWord.left = 10;
-//            cell.lblWord.left = 15;
-//        }
-//    }
-//    cell.lblTranslate.text = @"";
-//    cell.imgBgWord.width = cell.viewWord.width;
-//    cell.imgBgWord.height = cell.viewWord.height;
-//    cell.viewWordBottom.top = cell.viewWord.top + cell.viewWord.height+5;
-//    if ([cell isKindOfClass:[ChatRightTableViewCell class]]) {
-//        cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_Solid"];
-//    }
-//    if ([chat.type isEqualToString: @"text-m"]) {
-//        cell.lblTranslate.hidden = YES;
-//        cell.imgCorrect.hidden = NO;
-//        cell.viewWordBottom.backgroundColor = COLOR_Default_LightGreen;
-//        cell.viewWordBottom.layer.cornerRadius = 3;
-//        cell.viewWordBottom.layer.borderColor = RGBCOLOR(103, 131, 217).CGColor;
-//        cell.viewWordBottom.layer.borderWidth = 0.5;
-//        cell.viewWordBottom.layer.masksToBounds = YES;
-//        if (chat.photoImage) {
-//            cell.imgCorrect.image = chat.photoImage;
-//            if (chat.photoImage.size.width<self.view.width - 125) {
-//                cell.viewWordBottom.height = chat.photoImage.size.height;
-//                if([cell isKindOfClass:[ChatTableViewCell class]]){
-//                    double width = chat.photoImage.size.width+40;
-//                    if (width<self.view.width - 85) {
-//                        cell.viewWordBottom.width = width;
-//                        cell.imgCorrect.width = chat.photoImage.size.width;
-//                        cell.imgCorrect.height = chat.photoImage.size.height;
-//                    }
-//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//                    double width = chat.photoImage.size.width+40;
-//                    if (width<self.view.width - 85) {
-//                        double left = self.view.width - 75- width;
-//                        cell.viewWordBottom.left = left;
-//                        cell.viewWordBottom.width = width;
-//                        cell.imgCorrect.width = chat.photoImage.size.width;
-//                        cell.imgCorrect.height = chat.photoImage.size.height;
-//                    }
-//                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
-//                }
-//            }else{
-//                if([cell isKindOfClass:[ChatTableViewCell class]]){
-//                    cell.viewWordBottom.left = 75;
-//                    cell.imgCorrect.left = 25;
-//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//                    cell.viewWordBottom.left = 10;
-//                    cell.imgCorrect.left = 15;
-//                    cell.imgBgWord.image = [UIImage imageNamed:@"chatBubble_Sending_gray"];
-//                }
-//            }
-//        }
-//    }else if ([chat.type isEqualToString: @"text-t"]) {
-//        if (chat.translate&&chat.translate.length>0) {
-//            cell.lblTranslate.hidden = NO;
-//            cell.imgCorrect.hidden = YES;
-//            cell.viewWordBottom.backgroundColor = RGBCOLOR(32, 47, 70);
-//            cell.viewWordBottom.layer.borderWidth = 0;
-//            cell.viewWordBottom.layer.cornerRadius = 3;
-//            cell.viewWordBottom.layer.masksToBounds = YES;
-//            
-//            cell.viewWordBottom.width = self.view.width - 85;
-//            cell.lblTranslate.width = self.view.width - 125;
-//            cell.lblTranslate.font = [UIFont systemFontOfSize:14.0];
-//            [cell.lblTranslate setLineBreakMode:NSLineBreakByCharWrapping];
-//            cell.lblTranslate.numberOfLines = 0;
-//            [cell.lblTranslate setText:chat.translate];
-//            [cell.lblTranslate sizeToFit];
-//            CGFloat sizeFitHeight = cell.lblTranslate.height;
-//            sizeFitHeight = fmaxf(20, sizeFitHeight);
-//            cell.viewWordBottom.height = sizeFitHeight+10;
-//            
-//            if (cell.lblTranslate.height<=20) {
-//                static UILabel* lblInstance2 = nil;
-//                if (!lblInstance2) {
-//                    lblInstance2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 125, 20)];
-//                    lblInstance2.font = cell.lblTranslate.font;
-//                }
-//                lblInstance2.text = contentStr;
-//                [lblInstance2 sizeToFit];
-//                if([cell isKindOfClass:[ChatTableViewCell class]]){
-//                    double width = lblInstance2.width+40;
-//                    if (width<self.view.width - 85) {
-//                        cell.viewWordBottom.width = width;
-//                        cell.lblTranslate.width = lblInstance2.width;
-//                    }
-//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//                    double width = lblInstance2.width+40;
-//                    if (width<self.view.width - 85) {
-//                        double left = self.view.width - 75- width;
-//                        cell.viewWordBottom.left = left;
-//                        cell.viewWordBottom.width = width;
-//                        cell.lblTranslate.width = lblInstance2.width;
-//                    }
-//                }
-//            }else{
-//                if([cell isKindOfClass:[ChatTableViewCell class]]){
-//                    cell.viewWordBottom.left = 75;
-//                    cell.lblTranslate.left = 25;
-//                }else if([cell isKindOfClass:[ChatRightTableViewCell class]]){
-//                    cell.viewWordBottom.left = 10;
-//                    cell.lblTranslate.left = 15;
-//                }
-//            }
-//        }
-//    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -468,7 +313,7 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     }
 }
 -(void)handleReadCell:(id)sender{
-    [self showInfoTip:@"朗读功能暂未开放，敬请期待"];
+    [[Speecher shared] speakWithText:self.selectedContent];
 }
 -(void)handleBookCell:(id)sender{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:[AccountEntity shared].myNewWords];
@@ -506,9 +351,6 @@ static NSString *kChatRightTableViewCellIdentify = @"ChatRightTableViewCell";
     self.tempVoiceMessage.voicePath = name;
     self.tempVoiceMessage.messageType = ZBBubbleMessageVoice;
     [self showLoadingWithText:@"请说话"];
-    
-    //    self.messageToolView.messageInputTextView.text = [self.messageToolView.messageInputTextView.text stringByAppendingString:faceStr];
-    //    [self inputTextViewDidChange:self.messageToolView.messageInputTextView];
     
 }
 -(void)didCancelRecordingVoiceAction{

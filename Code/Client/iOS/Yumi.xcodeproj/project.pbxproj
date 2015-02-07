@@ -91,6 +91,7 @@
 		3F1668AE1A6BA73F00FAA9F6 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1668AC1A6BA73F00FAA9F6 /* ProfileTableViewCell.xib */; };
 		3F1668B21A6BE5B400FAA9F6 /* TopicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1668B01A6BE5B400FAA9F6 /* TopicTableViewCell.m */; };
 		3F1668B31A6BE5B400FAA9F6 /* TopicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1668B11A6BE5B400FAA9F6 /* TopicTableViewCell.xib */; };
+		3F3900821A865EE600446359 /* Speecher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3900811A865EE600446359 /* Speecher.m */; };
 		3F68F5671A7DCFEB00969142 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5431A7DCFEB00969142 /* AFHTTPRequestOperation.m */; };
 		3F68F5681A7DCFEB00969142 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5451A7DCFEB00969142 /* AFHTTPRequestOperationManager.m */; };
 		3F68F5691A7DCFEB00969142 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5471A7DCFEB00969142 /* AFHTTPSessionManager.m */; };
@@ -113,6 +114,7 @@
 		3F68F5801A7DEDE200969142 /* YumiNetAPIData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F57F1A7DEDE200969142 /* YumiNetAPIData.m */; };
 		3F68F5831A7DF5C300969142 /* NetAPIData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5821A7DF5C300969142 /* NetAPIData.m */; };
 		3F68F5861A7E814800969142 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5851A7E814800969142 /* NullSafe.m */; };
+		3F9425F61A865201001624F1 /* NSObject+OTSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */; };
 		3F9C0FE11A7A768000268E92 /* UIViewController+TextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C0FE01A7A768000268E92 /* UIViewController+TextFieldDelegate.m */; };
 		3FD90DDF1A7492CA00362A1A /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DDE1A7492CA00362A1A /* AudioHelper.m */; };
 		3FD90DE31A74A52100362A1A /* NewWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DE11A74A52100362A1A /* NewWordsViewController.m */; };
@@ -555,6 +557,9 @@
 		3F1668AF1A6BE5B400FAA9F6 /* TopicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTableViewCell.h; sourceTree = "<group>"; };
 		3F1668B01A6BE5B400FAA9F6 /* TopicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTableViewCell.m; sourceTree = "<group>"; };
 		3F1668B11A6BE5B400FAA9F6 /* TopicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicTableViewCell.xib; sourceTree = "<group>"; };
+		3F39007E1A865EE600446359 /* Media_Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media_Kit.h; sourceTree = "<group>"; };
+		3F3900801A865EE600446359 /* Speecher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speecher.h; sourceTree = "<group>"; };
+		3F3900811A865EE600446359 /* Speecher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speecher.m; sourceTree = "<group>"; };
 		3F68F5421A7DCFEB00969142 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		3F68F5431A7DCFEB00969142 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		3F68F5441A7DCFEB00969142 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -600,6 +605,9 @@
 		3F68F5811A7DF5C300969142 /* NetAPIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAPIData.h; sourceTree = "<group>"; };
 		3F68F5821A7DF5C300969142 /* NetAPIData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIData.m; sourceTree = "<group>"; };
 		3F68F5851A7E814800969142 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		3F9425F31A865201001624F1 /* NSObject+Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Kit.h"; sourceTree = "<group>"; };
+		3F9425F41A865201001624F1 /* NSObject+OTSharedInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OTSharedInstance.h"; sourceTree = "<group>"; };
+		3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OTSharedInstance.m"; sourceTree = "<group>"; };
 		3F9C0FDF1A7A768000268E92 /* UIViewController+TextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TextFieldDelegate.h"; sourceTree = "<group>"; };
 		3F9C0FE01A7A768000268E92 /* UIViewController+TextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TextFieldDelegate.m"; sourceTree = "<group>"; };
 		3FD90DDD1A7492CA00362A1A /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
@@ -1302,6 +1310,24 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		3F39007D1A865EE600446359 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				3F39007E1A865EE600446359 /* Media_Kit.h */,
+				3F39007F1A865EE600446359 /* Speak */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		3F39007F1A865EE600446359 /* Speak */ = {
+			isa = PBXGroup;
+			children = (
+				3F3900801A865EE600446359 /* Speecher.h */,
+				3F3900811A865EE600446359 /* Speecher.m */,
+			);
+			path = Speak;
+			sourceTree = "<group>";
+		};
 		3F68F5411A7DCFEB00969142 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1356,6 +1382,9 @@
 		3F68F5841A7E814800969142 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				3F9425F31A865201001624F1 /* NSObject+Kit.h */,
+				3F9425F41A865201001624F1 /* NSObject+OTSharedInstance.h */,
+				3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */,
 				3F68F5851A7E814800969142 /* NullSafe.m */,
 			);
 			path = NSObject;
@@ -1679,6 +1708,7 @@
 			children = (
 				FBDF8D601A689E22002E9A4E /* Category */,
 				FBDF8DB01A689E22002E9A4E /* Data */,
+				3F39007D1A865EE600446359 /* Media */,
 				FBDF8EFC1A689E23002E9A4E /* NetWork */,
 				FBDF8F771A689E23002E9A4E /* UI */,
 			);
@@ -2734,6 +2764,7 @@
 				TargetAttributes = {
 					FBDEB9401A50FD700038B94F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = KE7DGULBUC;
 					};
 					FBDEB9591A50FD700038B94F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -3178,9 +3209,11 @@
 				3FD90DE31A74A52100362A1A /* NewWordsViewController.m in Sources */,
 				FBDF910F1A689E25002E9A4E /* CSAnimation.m in Sources */,
 				FBDF90471A689E23002E9A4E /* SBJsonStreamParser.m in Sources */,
+				3F3900821A865EE600446359 /* Speecher.m in Sources */,
 				FBDF90161A689E23002E9A4E /* NSString+Valid.m in Sources */,
 				FBF3C88E1A67A0AE00905379 /* CustomMethod.m in Sources */,
 				3F68F56E1A7DCFEB00969142 /* AFURLResponseSerialization.m in Sources */,
+				3F9425F61A865201001624F1 /* NSObject+OTSharedInstance.m in Sources */,
 				FBCBB4731A51383E00EC273A /* MyViewController.m in Sources */,
 				FBDF901E1A689E23002E9A4E /* UIImage+ImageEffects.m in Sources */,
 				FBDF90231A689E23002E9A4E /* UINavigationItem+Margin.m in Sources */,
@@ -3310,7 +3343,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Asiainfo-Linkage Technologies (China) Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
@@ -3324,7 +3358,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "384BF3DC-0D6B-4D53-B734-49FA5D565174";
+				PROVISIONING_PROFILE = "953ec66e-bc54-4f37-bd0f-a2930a9a7dc8";
 			};
 			name = Debug;
 		};
@@ -3333,7 +3367,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Asiainfo-Linkage Technologies (China) Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
@@ -3346,7 +3381,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "384BF3DC-0D6B-4D53-B734-49FA5D565174";
+				PROVISIONING_PROFILE = "953ec66e-bc54-4f37-bd0f-a2930a9a7dc8";
 			};
 			name = Release;
 		};

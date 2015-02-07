@@ -10,6 +10,7 @@
 #import "NewWordTableViewCell.h"
 #import "CQMFloatingController.h"
 #import "NewWordsSettingViewController.h"
+#import "Speecher.h"
 
 static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
 
@@ -181,7 +182,7 @@ static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
     return height;
 }
 -(void)click_read:(NewWordTableViewCell *)cell content:(NSString *)content{
-    [self showInfoTip:@"群聊功能暂未开放，敬请期待"];
+    [[Speecher shared] speakWithText:content];
 }
 -(void)click_translate:(NewWordTableViewCell *)cell content:(NSString *)content{
     if (!cell.btnTranslate.selected) {
