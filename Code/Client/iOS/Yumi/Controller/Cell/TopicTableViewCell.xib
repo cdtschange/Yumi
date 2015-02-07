@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LIM-mb-KiN">
-                        <rect key="frame" x="15" y="11" width="90" height="70"/>
+                        <rect key="frame" x="15" y="12" width="90" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="bDR-JP-cLt"/>
                             <constraint firstAttribute="width" constant="90" id="fHz-NC-SPC"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-n1-tbQ">
-                        <rect key="frame" x="121" y="13" width="30" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="184" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-n1-tbQ">
+                        <rect key="frame" x="121" y="14" width="184" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="wAv-nI-zXM"/>
                         </constraints>
@@ -37,7 +37,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人浏览" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNf-Or-fx9" customClass="TTTAttributedLabel">
-                        <rect key="frame" x="121" y="66" width="43" height="15"/>
+                        <rect key="frame" x="121" y="67" width="43" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="feJ-Bf-DFV"/>
                             <constraint firstAttribute="width" constant="85" id="vju-NO-HwY"/>
@@ -53,7 +53,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人跟帖" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veo-Xt-Rn1" customClass="TTTAttributedLabel">
-                        <rect key="frame" x="186" y="66" width="43" height="15"/>
+                        <rect key="frame" x="186" y="67" width="43" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="eBP-8g-t5c"/>
                             <constraint firstAttribute="width" constant="89" id="rD5-HZ-SHp"/>
@@ -70,16 +70,17 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="LIM-mb-KiN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="9Ty-cG-6E3"/>
+                    <constraint firstItem="LIM-mb-KiN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="9Ty-cG-6E3"/>
                     <constraint firstItem="veo-Xt-Rn1" firstAttribute="leading" secondItem="jNf-Or-fx9" secondAttribute="trailing" constant="22" id="9Vu-ea-vIa"/>
                     <constraint firstItem="PRR-n1-tbQ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="9ze-Ry-hFg"/>
-                    <constraint firstItem="PRR-n1-tbQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="CVS-YB-a2f"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="jNf-Or-fx9" secondAttribute="bottom" constant="3" id="Qkb-Cy-EJz"/>
+                    <constraint firstItem="PRR-n1-tbQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="CVS-YB-a2f"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jNf-Or-fx9" secondAttribute="bottom" constant="2" id="Qkb-Cy-EJz"/>
                     <constraint firstItem="jNf-Or-fx9" firstAttribute="top" secondItem="PRR-n1-tbQ" secondAttribute="bottom" constant="22" id="Xwz-i5-Tgf"/>
                     <constraint firstItem="veo-Xt-Rn1" firstAttribute="top" secondItem="PRR-n1-tbQ" secondAttribute="bottom" constant="29" id="c3E-xz-Q0s"/>
                     <constraint firstItem="jNf-Or-fx9" firstAttribute="leading" secondItem="LIM-mb-KiN" secondAttribute="trailing" constant="16" id="cWA-VU-L6M"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PRR-n1-tbQ" secondAttribute="trailing" constant="7" id="g3S-gT-RG2"/>
                     <constraint firstItem="LIM-mb-KiN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="lSY-7P-9Tr"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="veo-Xt-Rn1" secondAttribute="bottom" constant="3" id="nyV-NN-5gh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="veo-Xt-Rn1" secondAttribute="bottom" constant="2" id="nyV-NN-5gh"/>
                     <constraint firstItem="PRR-n1-tbQ" firstAttribute="leading" secondItem="LIM-mb-KiN" secondAttribute="trailing" constant="16" id="teu-DR-xiW"/>
                 </constraints>
                 <variation key="default">
@@ -96,7 +97,7 @@
                 <outlet property="lblTitle" destination="PRR-n1-tbQ" id="cSf-1N-doo"/>
                 <outlet property="lblVisitCnt" destination="jNf-Or-fx9" id="ve4-1i-zCh"/>
             </connections>
-            <point key="canvasLocation" x="198" y="266.5"/>
+            <point key="canvasLocation" x="198" y="265.5"/>
         </tableViewCell>
     </objects>
 </document>
