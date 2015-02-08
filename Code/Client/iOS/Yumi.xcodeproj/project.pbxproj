@@ -114,6 +114,7 @@
 		3F68F5801A7DEDE200969142 /* YumiNetAPIData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F57F1A7DEDE200969142 /* YumiNetAPIData.m */; };
 		3F68F5831A7DF5C300969142 /* NetAPIData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5821A7DF5C300969142 /* NetAPIData.m */; };
 		3F68F5861A7E814800969142 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F5851A7E814800969142 /* NullSafe.m */; };
+		3F92E5351A8767B800FF8795 /* UIView+MGBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F92E5341A8767B800FF8795 /* UIView+MGBadgeView.m */; };
 		3F9425F61A865201001624F1 /* NSObject+OTSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */; };
 		3F9C0FE11A7A768000268E92 /* UIViewController+TextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C0FE01A7A768000268E92 /* UIViewController+TextFieldDelegate.m */; };
 		3FD90DDF1A7492CA00362A1A /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DDE1A7492CA00362A1A /* AudioHelper.m */; };
@@ -605,6 +606,8 @@
 		3F68F5811A7DF5C300969142 /* NetAPIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAPIData.h; sourceTree = "<group>"; };
 		3F68F5821A7DF5C300969142 /* NetAPIData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIData.m; sourceTree = "<group>"; };
 		3F68F5851A7E814800969142 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		3F92E5331A8767B800FF8795 /* UIView+MGBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MGBadgeView.h"; sourceTree = "<group>"; };
+		3F92E5341A8767B800FF8795 /* UIView+MGBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MGBadgeView.m"; sourceTree = "<group>"; };
 		3F9425F31A865201001624F1 /* NSObject+Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Kit.h"; sourceTree = "<group>"; };
 		3F9425F41A865201001624F1 /* NSObject+OTSharedInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OTSharedInstance.h"; sourceTree = "<group>"; };
 		3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OTSharedInstance.m"; sourceTree = "<group>"; };
@@ -1388,6 +1391,15 @@
 				3F68F5851A7E814800969142 /* NullSafe.m */,
 			);
 			path = NSObject;
+			sourceTree = "<group>";
+		};
+		3F92E5321A8767B800FF8795 /* MGBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				3F92E5331A8767B800FF8795 /* UIView+MGBadgeView.h */,
+				3F92E5341A8767B800FF8795 /* UIView+MGBadgeView.m */,
+			);
+			path = MGBadgeView;
 			sourceTree = "<group>";
 		};
 		3FD90DDC1A7492BA00362A1A /* Audio */ = {
@@ -2282,6 +2294,7 @@
 		FBDF8FB41A689E23002E9A4E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3F92E5321A8767B800FF8795 /* MGBadgeView */,
 				FBDF8FB91A689E23002E9A4E /* CQMFloatingController */,
 				FBDF8FC91A689E23002E9A4E /* MLNavigationController */,
 			);
@@ -3148,6 +3161,7 @@
 				3F1668841A6B627C00FAA9F6 /* NSAttributedString+RichTextEditor.m in Sources */,
 				FBDF90381A689E23002E9A4E /* RSCode39Generator.m in Sources */,
 				3FD90DDF1A7492CA00362A1A /* AudioHelper.m in Sources */,
+				3F92E5351A8767B800FF8795 /* UIView+MGBadgeView.m in Sources */,
 				3F1668981A6B627C00FAA9F6 /* WEPopoverController.m in Sources */,
 				FBDF90CF1A689E24002E9A4E /* DDTTYLogger.m in Sources */,
 				FBDF901C1A689E23002E9A4E /* UIDevice+Hardware.m in Sources */,

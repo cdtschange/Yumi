@@ -11,10 +11,6 @@
 @implementation FindTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    self.badgeView = [[BadgeView alloc] initWithFrame:CGRectMake(200, 16, 21, 21)];
-    self.badgeView.badgeColor = RGBCOLOR(255, 0, 23);
-    [self addSubview:self.badgeView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

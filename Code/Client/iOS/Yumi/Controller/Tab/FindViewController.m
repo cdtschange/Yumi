@@ -8,6 +8,7 @@
 
 #import "FindViewController.h"
 #import "FindTableViewCell.h"
+#import "UIView+MGBadgeView.h"
 
 static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
 
@@ -151,23 +152,27 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
     }
     
     cell.badgeView.hidden = YES;
-    [cell.badgeView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    cell.lblTitle.badgeView.position = MGBadgePositionCenterRight;
     [cell.lblTitle setTranslatesAutoresizingMaskIntoConstraints:YES];
     NSDictionary *obj;
     if (indexPath.section==0) {
         obj = self.dataArray[indexPath.row];
-        cell.badgeView.hidden = NO;
+        cell.lblTitle.text = obj[@"title"];
         if (indexPath.row==0) {
-            cell.badgeView.badgeString = [NSString stringWithFormat:@"%d", 9];
+            cell.lblTitle.badgeView.badgeValue = @"9";
             cell.badgeView.left = 100;
         }else if (indexPath.row==1) {
-            cell.badgeView.badgeString = [NSString stringWithFormat:@"%d", 1];
+            cell.lblTitle.badgeView.badgeValue = @"1";
             cell.badgeView.left = 200;
         }
     }else if (indexPath.section==1) {
         obj = self.dataArray[indexPath.row+2];
+        cell.lblTitle.text = obj[@"title"];
+        cell.lblTitle.badgeView.badgeValue = @"";
     }else if (indexPath.section==2) {
         obj = self.dataArray[indexPath.row+4];
+        cell.lblTitle.text = obj[@"title"];
+        cell.lblTitle.badgeView.badgeValue = @"";
     }
     if (obj[@"info"]&&[obj[@"info"] length]>0) {
         cell.lblTitle.top = 8;
@@ -177,7 +182,6 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
         cell.lblTitle.top = 15;
         cell.lblDescription.hidden = YES;
     }
-    cell.lblTitle.text = obj[@"title"];
     cell.imgPic.image = [UIImage imageNamed:obj[@"image"]];
     
     return cell;

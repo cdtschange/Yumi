@@ -83,7 +83,7 @@
                 <outlet property="lblTime" destination="nYZ-9M-Gew" id="Qbv-i5-Nrn"/>
                 <outlet property="lblTitle" destination="CWC-9b-O7t" id="0d2-zv-psB"/>
             </connections>
-            <point key="canvasLocation" x="245" y="228.5"/>
+            <point key="canvasLocation" x="245" y="223.5"/>
         </tableViewCell>
     </objects>
 </document>
