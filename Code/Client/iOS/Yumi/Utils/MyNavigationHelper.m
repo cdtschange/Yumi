@@ -94,9 +94,9 @@
 }
 +(void)setNavigationBarAttrubutes:(UINavigationBar *)bar{
     [bar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                 COLOR_Default_White, UITextAttributeTextColor,
+                                 COLOR_Default_White, NSForegroundColorAttributeName,
                                  [UIFont boldSystemFontOfSize:20.0],NSFontAttributeName,
-                                 [UIColor clearColor], UITextAttributeTextShadowColor,
+                                 [[NSShadow alloc] init], NSShadowAttributeName,
                                  nil]];
 }
 +(UIBarButtonItem *)createNavItemWithType:(MyNavItemType)type target:(id)target action:(SEL)action{
