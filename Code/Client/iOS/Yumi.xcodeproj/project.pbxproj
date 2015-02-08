@@ -175,8 +175,6 @@
 		FBCBB4791A5139DC00EC273A /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBCBB4771A5139DC00EC273A /* RootViewController.xib */; };
 		FBCBB47D1A513A0700EC273A /* LoginPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCBB47B1A513A0700EC273A /* LoginPreViewController.m */; };
 		FBCBB47E1A513A0700EC273A /* LoginPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBCBB47C1A513A0700EC273A /* LoginPreViewController.xib */; };
-		FBD52AA41A66178C00ECB74F /* BadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD52AA11A66178C00ECB74F /* BadgeView.m */; };
-		FBD52AA51A66178C00ECB74F /* UILabel+SuffixView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD52AA31A66178C00ECB74F /* UILabel+SuffixView.m */; };
 		FBDEB9471A50FD700038B94F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDEB9461A50FD700038B94F /* main.m */; };
 		FBDEB94A1A50FD700038B94F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDEB9491A50FD700038B94F /* AppDelegate.m */; };
 		FBDEB9501A50FD700038B94F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDEB94E1A50FD700038B94F /* Main.storyboard */; };
@@ -689,10 +687,6 @@
 		FBCBB47A1A513A0700EC273A /* LoginPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPreViewController.h; sourceTree = "<group>"; };
 		FBCBB47B1A513A0700EC273A /* LoginPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPreViewController.m; sourceTree = "<group>"; };
 		FBCBB47C1A513A0700EC273A /* LoginPreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginPreViewController.xib; sourceTree = "<group>"; };
-		FBD52AA01A66178C00ECB74F /* BadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeView.h; sourceTree = "<group>"; };
-		FBD52AA11A66178C00ECB74F /* BadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeView.m; sourceTree = "<group>"; };
-		FBD52AA21A66178C00ECB74F /* UILabel+SuffixView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SuffixView.h"; sourceTree = "<group>"; };
-		FBD52AA31A66178C00ECB74F /* UILabel+SuffixView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SuffixView.m"; sourceTree = "<group>"; };
 		FBDEB9411A50FD700038B94F /* Yumi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yumi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDEB9451A50FD700038B94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBDEB9461A50FD700038B94F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1692,10 +1686,6 @@
 				FBF3C7EA1A67A0AD00905379 /* RichKeyboard */,
 				FB045DB41A75F904005AA2E8 /* IconActionSheet.h */,
 				FB045DB51A75F904005AA2E8 /* IconActionSheet.m */,
-				FBD52AA01A66178C00ECB74F /* BadgeView.h */,
-				FBD52AA11A66178C00ECB74F /* BadgeView.m */,
-				FBD52AA21A66178C00ECB74F /* UILabel+SuffixView.h */,
-				FBD52AA31A66178C00ECB74F /* UILabel+SuffixView.m */,
 				FBDEBD6C1A510B550038B94F /* CenterButtonTabBarController.h */,
 				FBDEBD6D1A510B550038B94F /* CenterButtonTabBarController.m */,
 				FBDEBD6E1A510B550038B94F /* EmptyDefaultView.h */,
@@ -3118,7 +3108,6 @@
 				3F68F5831A7DF5C300969142 /* NetAPIData.m in Sources */,
 				3F68F5671A7DCFEB00969142 /* AFHTTPRequestOperation.m in Sources */,
 				FBCBB4781A5139DC00EC273A /* RootViewController.m in Sources */,
-				FBD52AA51A66178C00ECB74F /* UILabel+SuffixView.m in Sources */,
 				3F16689A1A6B627C00FAA9F6 /* RichTextEditor.m in Sources */,
 				FBDF900D1A689E23002E9A4E /* NSArray+Extension.m in Sources */,
 				FBDEBD701A510B550038B94F /* CenterButtonTabBarController.m in Sources */,
@@ -3138,7 +3127,6 @@
 				3F68F5801A7DEDE200969142 /* YumiNetAPIData.m in Sources */,
 				FBDF90411A689E23002E9A4E /* RSExtendedCode39Generator.m in Sources */,
 				FBDF903C1A689E23002E9A4E /* RSCodeView.m in Sources */,
-				FBD52AA41A66178C00ECB74F /* BadgeView.m in Sources */,
 				FBDEBD691A510A360038B94F /* UserUtils.m in Sources */,
 				FBDF91091A689E25002E9A4E /* TTTAttributedLabel.m in Sources */,
 				FBDF90101A689E23002E9A4E /* NSData+CommonCrypto.m in Sources */,

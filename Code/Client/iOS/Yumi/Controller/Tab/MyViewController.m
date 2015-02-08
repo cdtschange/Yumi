@@ -8,7 +8,6 @@
 
 #import "MyViewController.h"
 #import "MyTableViewCell.h"
-#import "BadgeView.h"
 
 static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
 

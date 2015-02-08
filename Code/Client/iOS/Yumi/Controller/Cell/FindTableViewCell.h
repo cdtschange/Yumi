@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BadgeView.h"
 
 @interface FindTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgPic;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
-@property (strong, nonatomic) BadgeView *badgeView;
 
 @end
