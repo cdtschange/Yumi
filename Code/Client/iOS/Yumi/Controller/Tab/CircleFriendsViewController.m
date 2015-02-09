@@ -31,7 +31,7 @@
 
 -(void)initUIAndData{
     [super initUIAndData];
-    self.title = @"语密圈";
+    self.title = @"语伴圈";
     [self loadData];
 }
 -(void)initNavigationBar{

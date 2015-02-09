@@ -148,7 +148,7 @@ static NSString *kProfileHeadTableViewCellIdentify = @"ProfileHeadTableViewCell"
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         cell.lblName.text = self.uname;
-        cell.lblInfo.text = [NSString stringWithFormat:@"语密号：14897261"];
+        cell.lblInfo.text = [NSString stringWithFormat:@"语伴号：14897261"];
         cell.imgHead.isRounded = YES;
         [cell.imgHead setImageWithURL:[NSURL URLWithString:[self.upic imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
         return cell;

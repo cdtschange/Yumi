@@ -62,7 +62,7 @@ static NSString *kMyTableViewCellIdentify = @"MyTableViewCell";
     [self.imgHead setImageWithURL:[NSURL URLWithString:[[AccountEntity shared].picsrc imageSmall]] placeholderImage:UIIMG_HEAD_DEFAULT];
     self.imgHead.isRounded = YES;
     self.lblName.text = [AccountEntity shared].name;
-    self.lblInfo.text = [NSString stringWithFormat:@"语密号：14897261"];
+    self.lblInfo.text = [NSString stringWithFormat:@"语伴号：14897261"];
     self.dataIndex = 0;
     [self.tableView reloadData];
 }

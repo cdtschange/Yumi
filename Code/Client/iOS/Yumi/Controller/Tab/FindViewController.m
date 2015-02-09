@@ -78,7 +78,7 @@ static NSString *kFindTableViewCellIdentify = @"FindTableViewCell";
     [super initUIAndData];
     
     self.source = @[
-  @{@"title":@"语密圈",@"url":@"CircleFriendsViewController",@"image":@"icon_find_circle"},
+  @{@"title":@"语伴圈",@"url":@"CircleFriendsViewController",@"image":@"icon_find_circle"},
   @{@"title":@"附近可能认识的人",@"url":@"NearUserViewController",@"image":@"icon_find_near"},
   @{@"title":@"发现话题",@"info":@"发现热门好的话题",@"url":@"TopicListViewController",@"image":@"icon_find_topic"},
   @{@"title":@"寻找群组",@"info":@"发现感兴趣的群组",@"image":@"icon_find_group"},
