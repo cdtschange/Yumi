@@ -7,7 +7,7 @@
 //
 
 #import "NewWordsSettingViewController.h"
-#import "CQMFloatingController.h"
+#import "MZFormSheetController.h"
 
 @interface NewWordsSettingViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
@@ -77,10 +77,10 @@
     self.lbl3.textColor = COLOR_Default_Green;
 }
 - (IBAction)click_cancel:(id)sender {
-    [[CQMFloatingController sharedFloatingController] dismissAnimated:YES];
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
 }
 - (IBAction)click_ok:(id)sender {
-    [[CQMFloatingController sharedFloatingController] dismissAnimated:YES];
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
 }
 
 @end

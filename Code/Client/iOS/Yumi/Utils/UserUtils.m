@@ -8,7 +8,6 @@
 
 #import "UserUtils.h"
 #import "AccountEntity.h"
-#import "CQMFloatingController.h"
 
 @interface UserUtils()
 

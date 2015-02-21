@@ -122,6 +122,15 @@
 		3FD90DE41A74A52100362A1A /* NewWordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD90DE21A74A52100362A1A /* NewWordsViewController.xib */; };
 		3FD90DE81A74BDB500362A1A /* NewWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DE61A74BDB500362A1A /* NewWordTableViewCell.m */; };
 		3FD90DE91A74BDB500362A1A /* NewWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD90DE71A74BDB500362A1A /* NewWordTableViewCell.xib */; };
+		3FE4015D1A9825FE0049552C /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE4014B1A9825FE0049552C /* MZAppearance.m */; };
+		3FE4015E1A9825FE0049552C /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE4014D1A9825FE0049552C /* MZFormSheetBackgroundWindow.m */; };
+		3FE4015F1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE4014F1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.m */; };
+		3FE401601A9825FE0049552C /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE401511A9825FE0049552C /* MZFormSheetController.m */; };
+		3FE401611A9825FE0049552C /* MZFormSheetSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE401531A9825FE0049552C /* MZFormSheetSegue.m */; };
+		3FE401621A9825FE0049552C /* MZTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE401561A9825FE0049552C /* MZTransition.m */; };
+		3FE401631A9825FE0049552C /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE401581A9825FE0049552C /* NSInvocation+Copy.m */; };
+		3FE401641A9825FE0049552C /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE4015A1A9825FE0049552C /* UIImage+Additional.m */; };
+		3FE401651A9825FE0049552C /* UIViewController+TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE4015C1A9825FE0049552C /* UIViewController+TargetViewController.m */; };
 		FB045DB61A75F904005AA2E8 /* IconActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FB045DB51A75F904005AA2E8 /* IconActionSheet.m */; };
 		FB045DB91A75F93B005AA2E8 /* ShareUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FB045DB81A75F93B005AA2E8 /* ShareUtils.m */; };
 		FB045DC31A761569005AA2E8 /* NewWordsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB045DC11A761569005AA2E8 /* NewWordsSettingViewController.m */; };
@@ -135,8 +144,6 @@
 		FBCBB4161A51294300EC273A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4151A51294300EC273A /* libz.dylib */; };
 		FBCBB4181A51294900EC273A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4171A51294900EC273A /* MediaPlayer.framework */; };
 		FBCBB41A1A51294F00EC273A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4191A51294F00EC273A /* UIKit.framework */; };
-		FBCBB41C1A51295500EC273A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB41B1A51295500EC273A /* AddressBookUI.framework */; };
-		FBCBB41E1A51295C00EC273A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB41D1A51295C00EC273A /* AddressBook.framework */; };
 		FBCBB4201A51296200EC273A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB41F1A51296200EC273A /* SystemConfiguration.framework */; };
 		FBCBB4221A51296A00EC273A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4211A51296A00EC273A /* Foundation.framework */; };
 		FBCBB4241A51296F00EC273A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCBB4231A51296F00EC273A /* MapKit.framework */; };
@@ -282,11 +289,6 @@
 		FBDF911A1A689E25002E9A4E /* waterRefreshLoadMore_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBDF8FAA1A689E23002E9A4E /* waterRefreshLoadMore_refresh@2x.png */; };
 		FBDF911B1A689E25002E9A4E /* WaterRefreshLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FAC1A689E23002E9A4E /* WaterRefreshLoadMoreView.m */; };
 		FBDF911C1A689E25002E9A4E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FB01A689E23002E9A4E /* MHTextField.m */; };
-		FBDF91211A689E25002E9A4E /* CQMFloatingContentOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FBB1A689E23002E9A4E /* CQMFloatingContentOverlayView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FBDF91221A689E25002E9A4E /* CQMFloatingController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FBD1A689E23002E9A4E /* CQMFloatingController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FBDF91231A689E25002E9A4E /* CQMFloatingFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FBF1A689E23002E9A4E /* CQMFloatingFrameView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FBDF91241A689E25002E9A4E /* CQMFloatingNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FC11A689E23002E9A4E /* CQMFloatingNavigationBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FBDF91251A689E25002E9A4E /* CQMPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FC31A689E23002E9A4E /* CQMPathUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FBDF91291A689E25002E9A4E /* mlnav_leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBDF8FCA1A689E23002E9A4E /* mlnav_leftside_shadow_bg@2x.png */; };
 		FBDF912A1A689E25002E9A4E /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8FCC1A689E23002E9A4E /* MLNavigationController.m */; };
 		FBDF91461A689E25002E9A4E /* README.mkdn in Resources */ = {isa = PBXBuildFile; fileRef = FBDF90091A689E23002E9A4E /* README.mkdn */; };
@@ -619,6 +621,25 @@
 		3FD90DE51A74BDB500362A1A /* NewWordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWordTableViewCell.h; sourceTree = "<group>"; };
 		3FD90DE61A74BDB500362A1A /* NewWordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWordTableViewCell.m; sourceTree = "<group>"; };
 		3FD90DE71A74BDB500362A1A /* NewWordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewWordTableViewCell.xib; sourceTree = "<group>"; };
+		3FE4014A1A9825FE0049552C /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
+		3FE4014B1A9825FE0049552C /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
+		3FE4014C1A9825FE0049552C /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
+		3FE4014D1A9825FE0049552C /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
+		3FE4014E1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindowViewController.h; sourceTree = "<group>"; };
+		3FE4014F1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindowViewController.m; sourceTree = "<group>"; };
+		3FE401501A9825FE0049552C /* MZFormSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetController.h; sourceTree = "<group>"; };
+		3FE401511A9825FE0049552C /* MZFormSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetController.m; sourceTree = "<group>"; };
+		3FE401521A9825FE0049552C /* MZFormSheetSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetSegue.h; sourceTree = "<group>"; };
+		3FE401531A9825FE0049552C /* MZFormSheetSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetSegue.m; sourceTree = "<group>"; };
+		3FE401541A9825FE0049552C /* MZMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMacro.h; sourceTree = "<group>"; };
+		3FE401551A9825FE0049552C /* MZTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTransition.h; sourceTree = "<group>"; };
+		3FE401561A9825FE0049552C /* MZTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTransition.m; sourceTree = "<group>"; };
+		3FE401571A9825FE0049552C /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
+		3FE401581A9825FE0049552C /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
+		3FE401591A9825FE0049552C /* UIImage+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additional.h"; sourceTree = "<group>"; };
+		3FE4015A1A9825FE0049552C /* UIImage+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additional.m"; sourceTree = "<group>"; };
+		3FE4015B1A9825FE0049552C /* UIViewController+TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TargetViewController.h"; sourceTree = "<group>"; };
+		3FE4015C1A9825FE0049552C /* UIViewController+TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TargetViewController.m"; sourceTree = "<group>"; };
 		FB045DB41A75F904005AA2E8 /* IconActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconActionSheet.h; sourceTree = "<group>"; };
 		FB045DB51A75F904005AA2E8 /* IconActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconActionSheet.m; sourceTree = "<group>"; };
 		FB045DB71A75F93B005AA2E8 /* ShareUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUtils.h; sourceTree = "<group>"; };
@@ -917,16 +938,6 @@
 		FBDF8FAC1A689E23002E9A4E /* WaterRefreshLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterRefreshLoadMoreView.m; sourceTree = "<group>"; };
 		FBDF8FAF1A689E23002E9A4E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
 		FBDF8FB01A689E23002E9A4E /* MHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTextField.m; sourceTree = "<group>"; };
-		FBDF8FBA1A689E23002E9A4E /* CQMFloatingContentOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQMFloatingContentOverlayView.h; sourceTree = "<group>"; };
-		FBDF8FBB1A689E23002E9A4E /* CQMFloatingContentOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQMFloatingContentOverlayView.m; sourceTree = "<group>"; };
-		FBDF8FBC1A689E23002E9A4E /* CQMFloatingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQMFloatingController.h; sourceTree = "<group>"; };
-		FBDF8FBD1A689E23002E9A4E /* CQMFloatingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQMFloatingController.m; sourceTree = "<group>"; };
-		FBDF8FBE1A689E23002E9A4E /* CQMFloatingFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQMFloatingFrameView.h; sourceTree = "<group>"; };
-		FBDF8FBF1A689E23002E9A4E /* CQMFloatingFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQMFloatingFrameView.m; sourceTree = "<group>"; };
-		FBDF8FC01A689E23002E9A4E /* CQMFloatingNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQMFloatingNavigationBar.h; sourceTree = "<group>"; };
-		FBDF8FC11A689E23002E9A4E /* CQMFloatingNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQMFloatingNavigationBar.m; sourceTree = "<group>"; };
-		FBDF8FC21A689E23002E9A4E /* CQMPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQMPathUtilities.h; sourceTree = "<group>"; };
-		FBDF8FC31A689E23002E9A4E /* CQMPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQMPathUtilities.m; sourceTree = "<group>"; };
 		FBDF8FCA1A689E23002E9A4E /* mlnav_leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mlnav_leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
 		FBDF8FCB1A689E23002E9A4E /* MLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNavigationController.h; sourceTree = "<group>"; };
 		FBDF8FCC1A689E23002E9A4E /* MLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNavigationController.m; sourceTree = "<group>"; };
@@ -1145,8 +1156,6 @@
 				FBCBB4241A51296F00EC273A /* MapKit.framework in Frameworks */,
 				FBCBB4221A51296A00EC273A /* Foundation.framework in Frameworks */,
 				FBCBB4201A51296200EC273A /* SystemConfiguration.framework in Frameworks */,
-				FBCBB41E1A51295C00EC273A /* AddressBook.framework in Frameworks */,
-				FBCBB41C1A51295500EC273A /* AddressBookUI.framework in Frameworks */,
 				FBCBB41A1A51294F00EC273A /* UIKit.framework in Frameworks */,
 				FBCBB4181A51294900EC273A /* MediaPlayer.framework in Frameworks */,
 				FBCBB4161A51294300EC273A /* libz.dylib in Frameworks */,
@@ -1403,6 +1412,32 @@
 				3FD90DDE1A7492CA00362A1A /* AudioHelper.m */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		3FE401491A9825FE0049552C /* MZFormSheetController */ = {
+			isa = PBXGroup;
+			children = (
+				3FE4014A1A9825FE0049552C /* MZAppearance.h */,
+				3FE4014B1A9825FE0049552C /* MZAppearance.m */,
+				3FE4014C1A9825FE0049552C /* MZFormSheetBackgroundWindow.h */,
+				3FE4014D1A9825FE0049552C /* MZFormSheetBackgroundWindow.m */,
+				3FE4014E1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.h */,
+				3FE4014F1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.m */,
+				3FE401501A9825FE0049552C /* MZFormSheetController.h */,
+				3FE401511A9825FE0049552C /* MZFormSheetController.m */,
+				3FE401521A9825FE0049552C /* MZFormSheetSegue.h */,
+				3FE401531A9825FE0049552C /* MZFormSheetSegue.m */,
+				3FE401541A9825FE0049552C /* MZMacro.h */,
+				3FE401551A9825FE0049552C /* MZTransition.h */,
+				3FE401561A9825FE0049552C /* MZTransition.m */,
+				3FE401571A9825FE0049552C /* NSInvocation+Copy.h */,
+				3FE401581A9825FE0049552C /* NSInvocation+Copy.m */,
+				3FE401591A9825FE0049552C /* UIImage+Additional.h */,
+				3FE4015A1A9825FE0049552C /* UIImage+Additional.m */,
+				3FE4015B1A9825FE0049552C /* UIViewController+TargetViewController.h */,
+				3FE4015C1A9825FE0049552C /* UIViewController+TargetViewController.m */,
+			);
+			path = MZFormSheetController;
 			sourceTree = "<group>";
 		};
 		FBCBB43B1A5129CB00EC273A /* Frameworks */ = {
@@ -2284,28 +2319,11 @@
 		FBDF8FB41A689E23002E9A4E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3FE401491A9825FE0049552C /* MZFormSheetController */,
 				3F92E5321A8767B800FF8795 /* MGBadgeView */,
-				FBDF8FB91A689E23002E9A4E /* CQMFloatingController */,
 				FBDF8FC91A689E23002E9A4E /* MLNavigationController */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		FBDF8FB91A689E23002E9A4E /* CQMFloatingController */ = {
-			isa = PBXGroup;
-			children = (
-				FBDF8FBA1A689E23002E9A4E /* CQMFloatingContentOverlayView.h */,
-				FBDF8FBB1A689E23002E9A4E /* CQMFloatingContentOverlayView.m */,
-				FBDF8FBC1A689E23002E9A4E /* CQMFloatingController.h */,
-				FBDF8FBD1A689E23002E9A4E /* CQMFloatingController.m */,
-				FBDF8FBE1A689E23002E9A4E /* CQMFloatingFrameView.h */,
-				FBDF8FBF1A689E23002E9A4E /* CQMFloatingFrameView.m */,
-				FBDF8FC01A689E23002E9A4E /* CQMFloatingNavigationBar.h */,
-				FBDF8FC11A689E23002E9A4E /* CQMFloatingNavigationBar.m */,
-				FBDF8FC21A689E23002E9A4E /* CQMPathUtilities.h */,
-				FBDF8FC31A689E23002E9A4E /* CQMPathUtilities.m */,
-			);
-			path = CQMFloatingController;
 			sourceTree = "<group>";
 		};
 		FBDF8FC91A689E23002E9A4E /* MLNavigationController */ = {
@@ -3029,7 +3047,6 @@
 				FBDF900F1A689E23002E9A4E /* NSData+Base64Additions.m in Sources */,
 				FBE34A981A528A1C001DBA08 /* ChatListTableViewCell.m in Sources */,
 				3F16689F1A6B627C00FAA9F6 /* RichTextEditorToolbar.m in Sources */,
-				FBDF91221A689E25002E9A4E /* CQMFloatingController.m in Sources */,
 				FBDF91141A689E25002E9A4E /* UILabel+TCCustomFont.m in Sources */,
 				FBF3C88F1A67A0AE00905379 /* MarkUpParser.m in Sources */,
 				FBDF90251A689E23002E9A4E /* UIView+Frame.m in Sources */,
@@ -3049,6 +3066,7 @@
 				FBDF904A1A689E23002E9A4E /* SBJsonStreamParserState.m in Sources */,
 				FBE57F8A1A53DBBE00261934 /* ChatTableViewCell.m in Sources */,
 				FBF3C88A1A67A0AE00905379 /* UIImage+XHRounded.m in Sources */,
+				3FE401651A9825FE0049552C /* UIViewController+TargetViewController.m in Sources */,
 				FBDF90451A689E23002E9A4E /* NSObject+SBJson.m in Sources */,
 				FBF3C8EF1A67A0AE00905379 /* SCGIFImageView.m in Sources */,
 				FBE57F971A53E6AE00261934 /* NewFriendsViewController.m in Sources */,
@@ -3093,6 +3111,7 @@
 				FBDF90DD1A689E24002E9A4E /* CacheProvider.m in Sources */,
 				FBF3C88C1A67A0AE00905379 /* ZBMessageBubbleFactory.m in Sources */,
 				3F16689E1A6B627C00FAA9F6 /* RichTextEditorToggleButton.m in Sources */,
+				3FE401641A9825FE0049552C /* UIImage+Additional.m in Sources */,
 				FBDEB9471A50FD700038B94F /* main.m in Sources */,
 				FBDF90D11A689E24002E9A4E /* DispatchQueueLogFormatter.m in Sources */,
 				3F68F5681A7DCFEB00969142 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -3107,10 +3126,12 @@
 				3F68F5701A7DCFEB00969142 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				3F68F5831A7DF5C300969142 /* NetAPIData.m in Sources */,
 				3F68F5671A7DCFEB00969142 /* AFHTTPRequestOperation.m in Sources */,
+				3FE4015E1A9825FE0049552C /* MZFormSheetBackgroundWindow.m in Sources */,
 				FBCBB4781A5139DC00EC273A /* RootViewController.m in Sources */,
 				3F16689A1A6B627C00FAA9F6 /* RichTextEditor.m in Sources */,
 				FBDF900D1A689E23002E9A4E /* NSArray+Extension.m in Sources */,
 				FBDEBD701A510B550038B94F /* CenterButtonTabBarController.m in Sources */,
+				3FE4015F1A9825FE0049552C /* MZFormSheetBackgroundWindowViewController.m in Sources */,
 				3F16689C1A6B627C00FAA9F6 /* RichTextEditorFontPickerViewController.m in Sources */,
 				FBDF904F1A689E23002E9A4E /* SBJsonUTF8Stream.m in Sources */,
 				FBCBB47D1A513A0700EC273A /* LoginPreViewController.m in Sources */,
@@ -3119,11 +3140,10 @@
 				FBDF90A51A689E24002E9A4E /* STDbHandle.m in Sources */,
 				FBF3C8F61A67A0AE00905379 /* ZBMessageShareMenuItem.m in Sources */,
 				FBE57F811A53D88800261934 /* DataFormatTool.m in Sources */,
-				FBDF91231A689E25002E9A4E /* CQMFloatingFrameView.m in Sources */,
 				FBF3C8871A67A0AE00905379 /* MessageDisplayViewController.m in Sources */,
 				3F68F5691A7DCFEB00969142 /* AFHTTPSessionManager.m in Sources */,
+				3FE401621A9825FE0049552C /* MZTransition.m in Sources */,
 				3F9C0FE11A7A768000268E92 /* UIViewController+TextFieldDelegate.m in Sources */,
-				FBDF91251A689E25002E9A4E /* CQMPathUtilities.m in Sources */,
 				3F68F5801A7DEDE200969142 /* YumiNetAPIData.m in Sources */,
 				FBDF90411A689E23002E9A4E /* RSExtendedCode39Generator.m in Sources */,
 				FBDF903C1A689E23002E9A4E /* RSCodeView.m in Sources */,
@@ -3138,8 +3158,9 @@
 				FBCBB46E1A51382A00EC273A /* FindViewController.m in Sources */,
 				3F68F56D1A7DCFEB00969142 /* AFURLRequestSerialization.m in Sources */,
 				FBDF90461A689E23002E9A4E /* SBJsonParser.m in Sources */,
-				FBDF91241A689E25002E9A4E /* CQMFloatingNavigationBar.m in Sources */,
 				FBDF90141A689E23002E9A4E /* NSString+Money.m in Sources */,
+				3FE401611A9825FE0049552C /* MZFormSheetSegue.m in Sources */,
+				3FE4015D1A9825FE0049552C /* MZAppearance.m in Sources */,
 				FBDF90D01A689E24002E9A4E /* ContextFilterLogFormatter.m in Sources */,
 				FBDF90321A689E23002E9A4E /* TMDiskCache.m in Sources */,
 				FBF3C8F71A67A0AE00905379 /* ZBMessageShareMenuView.m in Sources */,
@@ -3159,6 +3180,7 @@
 				FBDF90A01A689E24002E9A4E /* FastSTDbHandle.m in Sources */,
 				FBF3C8F11A67A0AE00905379 /* ZBExpressionSectionBar.m in Sources */,
 				FBCBB4501A512DD400EC273A /* RegisterAuthCodeViewController.m in Sources */,
+				3FE401601A9825FE0049552C /* MZFormSheetController.m in Sources */,
 				FBE57F851A53D9AD00261934 /* ChatViewController.m in Sources */,
 				FBDEBD681A510A360038B94F /* UIViewController+Yumi.m in Sources */,
 				FBDF91131A689E25002E9A4E /* UIButton+TCCustomFont.m in Sources */,
@@ -3180,6 +3202,7 @@
 				3F68F5771A7DCFEB00969142 /* UIWebView+AFNetworking.m in Sources */,
 				FBF3C88D1A67A0AE00905379 /* ZBMessageVoiceFactory.m in Sources */,
 				FBCBB4461A512CEB00EC273A /* LoginViewController.m in Sources */,
+				3FE401631A9825FE0049552C /* NSInvocation+Copy.m in Sources */,
 				FBDF902A1A689E23002E9A4E /* UIViewController+Route.m in Sources */,
 				FBDF90341A689E23002E9A4E /* JSONKit.m in Sources */,
 				FBF3C88B1A67A0AE00905379 /* ZBMessageAvatorFactory.m in Sources */,
@@ -3187,7 +3210,6 @@
 				FBDF903F1A689E23002E9A4E /* RSEAN8Generator.m in Sources */,
 				3F68F5751A7DCFEB00969142 /* UIProgressView+AFNetworking.m in Sources */,
 				3F68F5731A7DCFEB00969142 /* UIButton+AFNetworking.m in Sources */,
-				FBDF91211A689E25002E9A4E /* CQMFloatingContentOverlayView.m in Sources */,
 				FBDF901A1A689E23002E9A4E /* UIColor+Colours.m in Sources */,
 				3F68F56B1A7DCFEB00969142 /* AFSecurityPolicy.m in Sources */,
 				FBDF903E1A689E23002E9A4E /* RSEAN13Generator.m in Sources */,

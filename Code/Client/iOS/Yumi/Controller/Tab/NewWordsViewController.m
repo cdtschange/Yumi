@@ -8,8 +8,8 @@
 
 #import "NewWordsViewController.h"
 #import "NewWordTableViewCell.h"
-#import "CQMFloatingController.h"
 #import "NewWordsSettingViewController.h"
+#import "MZFormSheetController.h"
 #import "Speecher.h"
 
 static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
@@ -68,11 +68,11 @@ static NSString *kNewWordTableViewCellIdentify = @"NewWordTableViewCell";
 }
 -(void)click_settings:(id)sender{
     NewWordsSettingViewController *vc = [UIViewController instanceByName:@"NewWordsSettingViewController"];
-    CQMFloatingController *floatingController = [CQMFloatingController sharedFloatingController];
-    floatingController.presentMode = UIPresentFrameMode;
-    [floatingController setFrameSize:CGSizeMake(300, 280)];
-    [floatingController.navigationController.navigationBar setHidden:YES];
-    [floatingController presentWithContentViewController:vc animated:YES];
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    formSheet.transitionStyle = MZFormSheetTransitionStyleFade;
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 280);
+    [formSheet presentAnimated:YES completionHandler:nil];
 }
 
 #pragma mark - UITableViewDataSource

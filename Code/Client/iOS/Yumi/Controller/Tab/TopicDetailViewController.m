@@ -10,7 +10,6 @@
 #import "TopicReplyTableViewCell.h"
 #import "FriendTableViewCell.h"
 #import "CommentViewController.h"
-#import "CQMFloatingController.h"
 #import "DateUtils.h"
 #import "ShareUtils.h"
 

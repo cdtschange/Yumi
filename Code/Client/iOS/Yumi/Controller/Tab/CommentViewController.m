@@ -7,7 +7,6 @@
 //
 
 #import "CommentViewController.h"
-#import "CQMFloatingController.h"
 
 @interface CommentViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *txvContent;
