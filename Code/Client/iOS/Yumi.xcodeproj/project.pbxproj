@@ -2785,7 +2785,7 @@
 				TargetAttributes = {
 					FBDEB9401A50FD700038B94F = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = KE7DGULBUC;
+						DevelopmentTeam = HKTL8JRD2B;
 					};
 					FBDEB9591A50FD700038B94F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -3367,8 +3367,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanda Information Technology Co., Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanda Information Technology Co., Ltd";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
@@ -3382,7 +3382,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "953ec66e-bc54-4f37-bd0f-a2930a9a7dc8";
+				PROVISIONING_PROFILE = "04d9b76c-e6eb-4acd-8ce6-27340bea94a4";
 			};
 			name = Debug;
 		};
@@ -3391,8 +3391,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mao Wei (H5PZ7HVAPV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanda Information Technology Co., Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanda Information Technology Co., Ltd";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
@@ -3405,7 +3405,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "953ec66e-bc54-4f37-bd0f-a2930a9a7dc8";
+				PROVISIONING_PROFILE = "04d9b76c-e6eb-4acd-8ce6-27340bea94a4";
 			};
 			name = Release;
 		};
