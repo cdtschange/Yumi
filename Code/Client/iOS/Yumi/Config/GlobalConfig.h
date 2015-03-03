@@ -13,6 +13,7 @@
 #pragma mark - URL
 
 #define ITUNES_COMMENTS_URL @"http://itunes.apple.com/cn/app/wan-da-dian-ying/id517644732?ls=1&mt=8"
+#define PGY_APPID @"678651b6a7fc4c2be0ac4897e6274fe8"
 
 #define SERVER_IS_PRODUCT 0
 #define SERVER_HOST_PRODUCT @"https://xapi.g2r.wanhui.cn"

@@ -117,6 +117,8 @@
 		3F92E5351A8767B800FF8795 /* UIView+MGBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F92E5341A8767B800FF8795 /* UIView+MGBadgeView.m */; };
 		3F9425F61A865201001624F1 /* NSObject+OTSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */; };
 		3F9C0FE11A7A768000268E92 /* UIViewController+TextFieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C0FE01A7A768000268E92 /* UIViewController+TextFieldDelegate.m */; };
+		3FD8EF621AA5DBB90044A4ED /* NSOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8EF611AA5DBB90044A4ED /* NSOpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3FD8EF651AA5DBC50044A4ED /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD8EF641AA5DBC50044A4ED /* PgySDK.framework */; };
 		3FD90DDF1A7492CA00362A1A /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DDE1A7492CA00362A1A /* AudioHelper.m */; };
 		3FD90DE31A74A52100362A1A /* NewWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90DE11A74A52100362A1A /* NewWordsViewController.m */; };
 		3FD90DE41A74A52100362A1A /* NewWordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD90DE21A74A52100362A1A /* NewWordsViewController.xib */; };
@@ -228,7 +230,6 @@
 		FBDF902A1A689E23002E9A4E /* UIViewController+Route.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DAF1A689E22002E9A4E /* UIViewController+Route.m */; };
 		FBDF902B1A689E23002E9A4E /* Vector.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DB31A689E22002E9A4E /* Vector.m */; };
 		FBDF902D1A689E23002E9A4E /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DB71A689E22002E9A4E /* AppInfo.m */; };
-		FBDF902E1A689E23002E9A4E /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DBA1A689E22002E9A4E /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FBDF90311A689E23002E9A4E /* TMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DC01A689E22002E9A4E /* TMCache.m */; };
 		FBDF90321A689E23002E9A4E /* TMDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DC21A689E22002E9A4E /* TMDiskCache.m */; };
 		FBDF90331A689E23002E9A4E /* TMMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF8DC41A689E22002E9A4E /* TMMemoryCache.m */; };
@@ -613,6 +614,9 @@
 		3F9425F51A865201001624F1 /* NSObject+OTSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OTSharedInstance.m"; sourceTree = "<group>"; };
 		3F9C0FDF1A7A768000268E92 /* UIViewController+TextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TextFieldDelegate.h"; sourceTree = "<group>"; };
 		3F9C0FE01A7A768000268E92 /* UIViewController+TextFieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TextFieldDelegate.m"; sourceTree = "<group>"; };
+		3FD8EF601AA5DBB90044A4ED /* NSOpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOpenUDID.h; sourceTree = "<group>"; };
+		3FD8EF611AA5DBB90044A4ED /* NSOpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOpenUDID.m; sourceTree = "<group>"; };
+		3FD8EF641AA5DBC50044A4ED /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
 		3FD90DDD1A7492CA00362A1A /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
 		3FD90DDE1A7492CA00362A1A /* AudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioHelper.m; sourceTree = "<group>"; };
 		3FD90DE01A74A52100362A1A /* NewWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWordsViewController.h; sourceTree = "<group>"; };
@@ -813,8 +817,6 @@
 		FBDF8DB31A689E22002E9A4E /* Vector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector.m; sourceTree = "<group>"; };
 		FBDF8DB61A689E22002E9A4E /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
 		FBDF8DB71A689E22002E9A4E /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
-		FBDF8DB91A689E22002E9A4E /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
-		FBDF8DBA1A689E22002E9A4E /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		FBDF8DBF1A689E22002E9A4E /* TMCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMCache.h; sourceTree = "<group>"; };
 		FBDF8DC01A689E22002E9A4E /* TMCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMCache.m; sourceTree = "<group>"; };
 		FBDF8DC11A689E22002E9A4E /* TMDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDiskCache.h; sourceTree = "<group>"; };
@@ -1151,6 +1153,7 @@
 				FBCBB42E1A51298700EC273A /* AssetsLibrary.framework in Frameworks */,
 				FBCBB42C1A51298200EC273A /* CoreData.framework in Frameworks */,
 				FBCBB42A1A51297E00EC273A /* CoreLocation.framework in Frameworks */,
+				3FD8EF651AA5DBC50044A4ED /* PgySDK.framework in Frameworks */,
 				FBCBB4281A51297900EC273A /* libsqlite3.dylib in Frameworks */,
 				FBCBB4261A51297300EC273A /* AudioToolbox.framework in Frameworks */,
 				FBCBB4241A51296F00EC273A /* MapKit.framework in Frameworks */,
@@ -1403,6 +1406,14 @@
 				3F92E5341A8767B800FF8795 /* UIView+MGBadgeView.m */,
 			);
 			path = MGBadgeView;
+			sourceTree = "<group>";
+		};
+		3FD8EF631AA5DBC50044A4ED /* Statics */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8EF641AA5DBC50044A4ED /* PgySDK.framework */,
+			);
+			path = Statics;
 			sourceTree = "<group>";
 		};
 		3FD90DDC1A7492BA00362A1A /* Audio */ = {
@@ -1935,6 +1946,7 @@
 				FBDF8DC51A689E22002E9A4E /* Code */,
 				FBDF8E041A689E23002E9A4E /* DB */,
 				FBDF8EEA1A689E23002E9A4E /* Log */,
+				3FD8EF631AA5DBC50044A4ED /* Statics */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1961,8 +1973,8 @@
 		FBDF8DB81A689E22002E9A4E /* OpenUDID */ = {
 			isa = PBXGroup;
 			children = (
-				FBDF8DB91A689E22002E9A4E /* OpenUDID.h */,
-				FBDF8DBA1A689E22002E9A4E /* OpenUDID.m */,
+				3FD8EF601AA5DBB90044A4ED /* NSOpenUDID.h */,
+				3FD8EF611AA5DBB90044A4ED /* NSOpenUDID.m */,
 			);
 			path = OpenUDID;
 			sourceTree = "<group>";
@@ -3066,11 +3078,11 @@
 				FBDF904A1A689E23002E9A4E /* SBJsonStreamParserState.m in Sources */,
 				FBE57F8A1A53DBBE00261934 /* ChatTableViewCell.m in Sources */,
 				FBF3C88A1A67A0AE00905379 /* UIImage+XHRounded.m in Sources */,
+				3FD8EF621AA5DBB90044A4ED /* NSOpenUDID.m in Sources */,
 				3FE401651A9825FE0049552C /* UIViewController+TargetViewController.m in Sources */,
 				FBDF90451A689E23002E9A4E /* NSObject+SBJson.m in Sources */,
 				FBF3C8EF1A67A0AE00905379 /* SCGIFImageView.m in Sources */,
 				FBE57F971A53E6AE00261934 /* NewFriendsViewController.m in Sources */,
-				FBDF902E1A689E23002E9A4E /* OpenUDID.m in Sources */,
 				FBF3C8F51A67A0AE00905379 /* ZBMessageTextView.m in Sources */,
 				FBDF90131A689E23002E9A4E /* NSString+Encrypt.m in Sources */,
 				FBEB83451A5B8B5B009208B0 /* FindTableViewCell.m in Sources */,
@@ -3369,7 +3381,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanda Information Technology Co., Ltd";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanda Information Technology Co., Ltd";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/cdts_home/开发/代码/Github/ObjcKit/Data/Statics",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
 				INFOPLIST_FILE = Yumi/Info.plist;
@@ -3393,7 +3408,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanda Information Technology Co., Ltd";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanda Information Technology Co., Ltd";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/cdts_home/开发/代码/Github/ObjcKit/Data/Statics",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Yumi/Yumi-Prefix.pch";
 				INFOPLIST_FILE = Yumi/Info.plist;

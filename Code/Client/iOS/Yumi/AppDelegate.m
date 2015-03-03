@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <PgySDK/PgyManager.h>
 
 @interface AppDelegate ()
 
@@ -26,6 +27,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    if (DEBUG) {
+        [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+        [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APPID];
+        [[PgyManager sharedPgyManager] checkUpdate];
+    }
     // 设置样式
     [MyNavigationHelper setNavigationTitleStyle];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
